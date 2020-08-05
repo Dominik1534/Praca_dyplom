@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,8 +16,9 @@ namespace Projekt_symulujący_strategie_sprzątania
         public bool czy_aktywna;
         private  Odkurzacz odkurzacz;
         private Brud brud;
+        public static string TextIlosc;
 
-        
+       
         public Form1()
         {
             InitializeComponent();
@@ -34,12 +36,12 @@ namespace Projekt_symulujący_strategie_sprzątania
                 odkurzacz.move();
                 odkurzacz.rysuj(panel1.CreateGraphics(), new SolidBrush(Color.Aqua));
                 brud.rysuj_brud(panel1.CreateGraphics(), new SolidBrush(Color.Red));
+
                 if (brud.czy_nowy_brud(odkurzacz.x[0], odkurzacz.y[0]))
                 {
-                    
                     label1.Text = Brud.wynik.ToString();
                 }
-                
+                brud.Zbieranie(odkurzacz.x[0], odkurzacz.y[0],panel1.CreateGraphics(), new SolidBrush(Color.Green));
 
             }
             else
@@ -64,22 +66,14 @@ namespace Projekt_symulujący_strategie_sprzątania
             if (e.KeyCode == Keys.Down) odkurzacz.ruch = "dol";
             if (e.KeyCode == Keys.Right) odkurzacz.ruch = "prawo";
             if (e.KeyCode == Keys.Left) odkurzacz.ruch = "lewo";
-
-
-
-
-
-
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void IloscButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
+            TextIlosc = IloscBrudu.Text;
+            Brud.IlośćBrudu(TextIlosc);
+            
+          
         }
     }
 }

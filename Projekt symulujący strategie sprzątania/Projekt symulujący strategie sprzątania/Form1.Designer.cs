@@ -40,6 +40,8 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.IloscBrudu = new System.Windows.Forms.TextBox();
+            this.IloscButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,23 +118,40 @@
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "label1";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(329, 73);
+            this.label2.Location = new System.Drawing.Point(417, 42);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "label2";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.label2.Text = "Ilość brudu";
+            // 
+            // IloscBrudu
+            // 
+            this.IloscBrudu.Location = new System.Drawing.Point(399, 58);
+            this.IloscBrudu.Name = "IloscBrudu";
+            this.IloscBrudu.Size = new System.Drawing.Size(100, 20);
+            this.IloscBrudu.TabIndex = 4;
+            // 
+            // IloscButton
+            // 
+            this.IloscButton.Location = new System.Drawing.Point(411, 84);
+            this.IloscButton.Name = "IloscButton";
+            this.IloscButton.Size = new System.Drawing.Size(75, 23);
+            this.IloscButton.TabIndex = 5;
+            this.IloscButton.Text = "Zatwierdz";
+            this.IloscButton.UseVisualStyleBackColor = true;
+            this.IloscButton.Click += new System.EventHandler(this.IloscButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(511, 320);
+            this.Controls.Add(this.IloscButton);
+            this.Controls.Add(this.IloscBrudu);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
@@ -161,6 +180,8 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox IloscBrudu;
+        private System.Windows.Forms.Button IloscButton;
     }
 }
 

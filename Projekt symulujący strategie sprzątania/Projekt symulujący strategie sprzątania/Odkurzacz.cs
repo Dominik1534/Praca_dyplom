@@ -20,12 +20,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
         public void move()
         {
-            //for (int i = segmenty; i > 0; i--)
-            //{
-            //    x[i] = x[(i - 1)];
-            //    y[i] = y[(i - 1)];
-
-            //}
+           
             if (ruch=="lewo")
             {
                 x[0] = x[0] - segment;
