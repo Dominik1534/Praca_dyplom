@@ -16,14 +16,16 @@ namespace Projekt_symulujący_strategie_sprzątania
         public bool czy_aktywna;
         private  Odkurzacz odkurzacz;
         private Brud brud;
+        private Sciany sciany=new Sciany();
         public static string TextIlosc;
+        public static Mapa mapa = new Mapa();
 
-       
         public Form1()
         {
             InitializeComponent();
             czy_aktywna = false;
             timer1.Enabled = true;
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -31,18 +33,20 @@ namespace Projekt_symulujący_strategie_sprzątania
             
             if (czy_aktywna)
             {
+               
+
                 panel1.CreateGraphics().Clear(Color.Black);
-                
+                sciany.rysuj(panel1.CreateGraphics(), new SolidBrush(Color.Orange));
                 odkurzacz.move();
                 odkurzacz.rysuj(panel1.CreateGraphics(), new SolidBrush(Color.Aqua));
                 brud.rysuj_brud(panel1.CreateGraphics(), new SolidBrush(Color.Red));
 
-                if (brud.czy_nowy_brud(odkurzacz.x[0], odkurzacz.y[0]))
+                if (brud.czy_nowy_brud(odkurzacz.x, odkurzacz.y))
                 {
                     label1.Text = Brud.wynik.ToString();
                 }
-                brud.Zbieranie(odkurzacz.x[0], odkurzacz.y[0],panel1.CreateGraphics(), new SolidBrush(Color.Green));
-
+                brud.Zbieranie(odkurzacz.x, odkurzacz.y,panel1.CreateGraphics(), new SolidBrush(Color.Green));
+                //odkurzacz.Ruch1();
             }
             else
             {
@@ -50,6 +54,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 Font f = new Font(fontFamily1, 15);
                 Brush b = new SolidBrush(Color.Aqua);
                 panel1.CreateGraphics().DrawString("Naciśnij Start",f,b,80,135);
+                
             }
         }
 
@@ -62,10 +67,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode==Keys.Up) odkurzacz.ruch = "gora";
-            if (e.KeyCode == Keys.Down) odkurzacz.ruch = "dol";
-            if (e.KeyCode == Keys.Right) odkurzacz.ruch = "prawo";
-            if (e.KeyCode == Keys.Left) odkurzacz.ruch = "lewo";
+         
         }
 
         private void IloscButton_Click(object sender, EventArgs e)
@@ -74,6 +76,30 @@ namespace Projekt_symulujący_strategie_sprzątania
             Brud.IlośćBrudu(TextIlosc);
             
           
+        }
+        /*1-prawo
+             * 2-lewo 3
+             * 3-gora 4
+             * 4-dol 2
+             */
+        private void button1_Click(object sender, EventArgs e)
+        {
+            odkurzacz.ruch = 2;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            odkurzacz.ruch = 1;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            odkurzacz.ruch = 3;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            odkurzacz.ruch = 4;
         }
     }
 }
