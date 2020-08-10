@@ -17,6 +17,7 @@ namespace Projekt_symulujący_strategie_sprzątania
         private  Odkurzacz odkurzacz;
         private Brud brud;
         private Sciany sciany=new Sciany();
+        private Trasa trasa = new Trasa();
         public static string TextIlosc;
         public static Mapa mapa = new Mapa();
 
@@ -37,16 +38,21 @@ namespace Projekt_symulujący_strategie_sprzątania
 
                 panel1.CreateGraphics().Clear(Color.Black);
                 sciany.rysuj(panel1.CreateGraphics(), new SolidBrush(Color.Orange));
-                odkurzacz.move();
+                trasa.rysuj(panel1.CreateGraphics(), new SolidBrush(Color.White));
                 odkurzacz.rysuj(panel1.CreateGraphics(), new SolidBrush(Color.Aqua));
+                odkurzacz.move2();
                 brud.rysuj_brud(panel1.CreateGraphics(), new SolidBrush(Color.Red));
 
-                if (brud.czy_nowy_brud(odkurzacz.x, odkurzacz.y))
-                {
-                    label1.Text = Brud.wynik.ToString();
-                }
+                
+                label1.Text = Brud.wynik.ToString();
+              
                 brud.Zbieranie(odkurzacz.x, odkurzacz.y,panel1.CreateGraphics(), new SolidBrush(Color.Green));
-                //odkurzacz.Ruch1();
+               // odkurzacz.Ruch1();
+                if (mapa.IloscBrudu==Brud.wynik)
+                {
+                    //MessageBox.Show("Brak brudu");
+                    Application.Exit();
+                }
             }
             else
             {
@@ -70,13 +76,7 @@ namespace Projekt_symulujący_strategie_sprzątania
          
         }
 
-        private void IloscButton_Click(object sender, EventArgs e)
-        {
-            TextIlosc = IloscBrudu.Text;
-            Brud.IlośćBrudu(TextIlosc);
-            
-          
-        }
+       
         /*1-prawo
              * 2-lewo 3
              * 3-gora 4
@@ -100,6 +100,12 @@ namespace Projekt_symulujący_strategie_sprzątania
         private void button3_Click(object sender, EventArgs e)
         {
             odkurzacz.ruch = 4;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            mapa.SprawdzIloscBrudu();
+            Brud.ilosc = mapa.IloscBrudu;
         }
     }
 }
