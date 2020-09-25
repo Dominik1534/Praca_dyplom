@@ -18,7 +18,10 @@ namespace Projekt_symulujący_strategie_sprzątania
             {
                 for (int px = 0; px < 20; px++)
                 {
-                    if (Form1.mapa.Plansza[py, px] == 10) { x = px * 14; y = py * 14; }
+                    if (Form1.mapa.Plansza[py, px] == 10)
+                    { 
+                        x = px * 14; y = py * 14; 
+                    }
 
                     g.FillRectangle(b, x, y, 14, 14);
                     

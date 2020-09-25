@@ -40,7 +40,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 sciany.rysuj(panel1.CreateGraphics(), new SolidBrush(Color.Orange));
                 trasa.rysuj(panel1.CreateGraphics(), new SolidBrush(Color.White));
                 odkurzacz.rysuj(panel1.CreateGraphics(), new SolidBrush(Color.Aqua));
-                odkurzacz.move2();
+                odkurzacz.move3();
                 brud.rysuj_brud(panel1.CreateGraphics(), new SolidBrush(Color.Red));
 
                 
@@ -82,30 +82,32 @@ namespace Projekt_symulujący_strategie_sprzątania
              * 3-gora 4
              * 4-dol 2
              */
-        private void button1_Click(object sender, EventArgs e)
-        {
-            odkurzacz.ruch = 2;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            odkurzacz.ruch = 1;
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            odkurzacz.ruch = 3;
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            odkurzacz.ruch = 4;
-        }
+      
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
             mapa.SprawdzIloscBrudu();
             Brud.ilosc = mapa.IloscBrudu;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

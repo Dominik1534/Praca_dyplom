@@ -58,9 +58,7 @@ namespace Projekt_symulujący_strategie_sprzątania
         public void Zbieranie(int glowa_x, int glowa_y, Graphics g, Brush b)
         {
             for (i = 0; i < x.Length; i++)
-            {
-               
-
+            {            
                     if (x[i] == glowa_x && y[i] == glowa_y)
                     {
                         g.FillRectangle(b, x[i], y[i], segment, segment);
@@ -68,11 +66,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                         y[i] = 300;
                         wynik++;
                     }
-
-                
-
-            }
-            
+            }           
         }
 
         public bool czy_nowy_brud(int glowa_x, int glowa_y)
