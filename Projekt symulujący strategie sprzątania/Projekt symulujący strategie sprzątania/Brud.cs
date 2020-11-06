@@ -30,7 +30,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 {
                     
 
-                        if (Form1.mapa.Plansza[py,px]==5)
+                        if (Form1.mapa.Plansza1[py,px]==5)
                         {
                        
                       

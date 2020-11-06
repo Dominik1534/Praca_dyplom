@@ -21,11 +21,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                     if (Form1.mapa.Plansza[py, px] == 99) { x = px * 14; y = py * 14; }
 
                     g.FillRectangle(b, x, y,14, 14);
-                    //if (Form1.mapa.Plansza[py, px] == 10)
-                    //{
-                    //    x = px * 14; y = py * 14;
-                    //    g.FillRectangle(new SolidBrush(Color.White), x,y,14,14);
-                    //}
+                 
                 }
             }
 

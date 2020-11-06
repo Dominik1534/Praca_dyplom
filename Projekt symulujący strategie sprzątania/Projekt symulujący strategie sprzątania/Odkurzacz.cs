@@ -27,14 +27,19 @@ namespace Projekt_symulujący_strategie_sprzątania
 
         public int ruch;
         private int q = 0;
-      
-
-
+     
         private bool gora;
         private bool lewo;
         private bool prawo;
         private bool dol;
-    
+        public bool Krok = false;
+        public bool RLewo = false;
+        public bool RPrawo = false;
+        public bool Inicjacja=true;
+
+
+
+
 
         public void Kierunek(int kierunek)
         {
@@ -42,7 +47,6 @@ namespace Projekt_symulujący_strategie_sprzątania
             lewo = false;
             prawo = false;
             dol = false;
-
             if (kierunek == 4)
             {
                 y = y - segment;
@@ -79,7 +83,6 @@ namespace Projekt_symulujący_strategie_sprzątania
                 y = y - segment;
                 py--;
             }
-
             if (kierunek == 6)
             {
                 //lewa Górea
@@ -106,13 +109,15 @@ namespace Projekt_symulujący_strategie_sprzątania
             }
             Form1.mapa.Plansza[py, px] = 10;
         }
-  
+
+       
+
         public bool SprawdzKolejnyRuchCzySciana(int ruch)
         {
             if (ruch == 1 && Form1.mapa.Plansza[py, px + 1] == 99) { return true; }
-            if (ruch == 2 && Form1.mapa.Plansza[py - 1, px] == 99) { return true; }
+            if (ruch == 2 && Form1.mapa.Plansza[py + 1, px] == 99) { return true; }
             if (ruch == 3 && Form1.mapa.Plansza[py, px - 1] == 99) { return true; }
-            if (ruch == 4 && Form1.mapa.Plansza[py + 1, px] == 99) { return true; }
+            if (ruch == 4 && Form1.mapa.Plansza[py - 1, px] == 99) { return true; }
 
             if (ruch == 5 && Form1.mapa.Plansza[py-1 , px+1 ] == 99) { return true; }
             if (ruch == 6 && Form1.mapa.Plansza[py-1 , px -1] == 99) { return true; }
@@ -126,9 +131,9 @@ namespace Projekt_symulujący_strategie_sprzątania
         public bool SprawdzKolejnyRuchCzyPuste(int ruch)
         {
             if (ruch == 1 && Form1.mapa.Plansza[py, px + 1] != 99) { return true; }
-            if (ruch == 2 && Form1.mapa.Plansza[py - 1, px] != 99) { return true; }
+            if (ruch == 2 && Form1.mapa.Plansza[py + 1, px] != 99) { return true; }
             if (ruch == 3 && Form1.mapa.Plansza[py, px - 1] != 99) { return true; }
-            if (ruch == 4 && Form1.mapa.Plansza[py + 1, px] != 99) { return true; }
+            if (ruch == 4 && Form1.mapa.Plansza[py - 1, px] != 99) { return true; }
 
             if (ruch == 5 && Form1.mapa.Plansza[py - 1, px + 1] != 99) { return true; }
             if (ruch == 6 && Form1.mapa.Plansza[py - 1, px - 1] != 99) { return true; }
@@ -140,7 +145,199 @@ namespace Projekt_symulujący_strategie_sprzątania
             return false;
         }
 
+        public void S_move()
+        {
+            //RUCH prawo INICJACJA
+            
+            
+            if (Inicjacja == true && ruch==1 && SprawdzKolejnyRuchCzyPuste(1)==true && SprawdzKolejnyRuchCzyPuste(4) == true && SprawdzKolejnyRuchCzyPuste(2) == true)
+            {
+                Kierunek(1);
+                ruch = 1;
+               
+                return;
+            }
+            if (ruch == 1 && SprawdzKolejnyRuchCzyPuste(1) == false && SprawdzKolejnyRuchCzySciana(1)==true)
+            {
+                Kierunek(4);
+                ruch = 4;
+                 Inicjacja = false;
+                return;
+            }
 
+
+            if (ruch == 4 && SprawdzKolejnyRuchCzyPuste(4) == true)
+            {
+                Kierunek(4);
+                ruch = 4;
+                return;
+            }
+
+            if (ruch == 2 && SprawdzKolejnyRuchCzyPuste(2) == true)
+            {
+                Kierunek(2);
+                ruch = 2;
+                return;
+            }
+
+            //PRAWY GORNY ROG
+
+            if (ruch == 4 && SprawdzKolejnyRuchCzySciana(4) == true &&  SprawdzKolejnyRuchCzySciana(1) == true)
+            {
+                Kierunek(3);
+                ruch = 3;
+                Krok = true;
+                RPrawo = false;
+                RLewo = true;
+                return;
+            }
+            //PRAWY DOLNY ROG
+            if (ruch == 2 && SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzySciana(1) == true )
+            {
+                Kierunek(3);
+                ruch = 3;
+                Krok = true;
+                RPrawo = false;
+                RLewo = true;
+                return;
+            }
+            //PRAWY GORNY RÓG RUCH W PRAWY 
+            if ( ruch == 1 && SprawdzKolejnyRuchCzyPuste(2) == true && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzySciana(1) == true)
+            {
+                Kierunek(2);
+                ruch = 2;
+                Krok = false;
+                return;
+            }
+            //PRAWY DOLNY RÓG RUCH W PRAWY
+            if ( ruch == 1 && SprawdzKolejnyRuchCzyPuste(4) == true && SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzySciana(1) == true)
+            {
+                Kierunek(4);
+                ruch = 4;
+                Krok = false;
+                return;
+            }
+            //KROK W LEWO GORNY BEZ SCIANY
+            if (RLewo==true && ruch == 4 && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzyPuste(3) == true && SprawdzKolejnyRuchCzyPuste(1) == true && Krok == false)
+            {
+                Kierunek(3);
+                ruch = 3;
+                Krok = true;
+                return;
+            }
+            //KROK W LEWO GORNY
+            if (RLewo == true && ruch == 3 && SprawdzKolejnyRuchCzyPuste(2) == true && SprawdzKolejnyRuchCzySciana(4)==true && Krok==true)
+            {
+                Kierunek(2);
+                ruch = 2;
+                Krok = false;
+                return;
+            }
+            //
+
+            //KROK W LEWO DOLNY BEZ SCIANY
+            if (RLewo == true && ruch == 2 && SprawdzKolejnyRuchCzyPuste(2) == false && SprawdzKolejnyRuchCzyPuste(1) == true && SprawdzKolejnyRuchCzyPuste(3) == true && Krok == false)
+            {
+                Kierunek(3);
+                ruch = 3;
+                Krok = true;
+                return;
+            }
+            //KROK W LEWO DOLNY
+            if (RLewo == true && ruch == 3 && SprawdzKolejnyRuchCzyPuste(4) == true  && Krok == true)
+            {
+                Kierunek(4);
+                ruch = 4;
+                Krok = false;
+                return;
+            }
+            //LEWY GORNY RÓG RUCH W LEWO 
+            if (RLewo == true && ruch ==3 && SprawdzKolejnyRuchCzyPuste(2) == true && SprawdzKolejnyRuchCzySciana(4) ==true && SprawdzKolejnyRuchCzySciana(3)==true)
+            {
+                Kierunek(2);
+                ruch = 2;
+                Krok = false;
+                return;
+            }
+            //LEWY DOLNY RÓG RUCH W LEWO
+            if (RLewo == true && ruch == 3 && SprawdzKolejnyRuchCzyPuste(4) == true && SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzySciana(3) == true)
+            {
+                Kierunek(4);
+                ruch = 4;
+                Krok = false;
+                return;
+            }
+            //LEWY GORNY RÓG RUCH W GORE 
+            if (RLewo == true && ruch == 4 && SprawdzKolejnyRuchCzyPuste(1) == true && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzySciana(3) == true)
+            {
+                Kierunek(1);
+                ruch = 1;
+                RLewo = false;
+                RPrawo = true;
+                Krok = true;
+                return;
+            }
+            //LEWY DOLNY RÓG RUCH W DOL
+            if (RLewo == true && ruch == 2 && SprawdzKolejnyRuchCzyPuste(1) == true && SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzySciana(3) == true)
+            {
+                Kierunek(1);
+                ruch = 1;
+                RLewo = false;
+                RPrawo = true;
+                Krok = true;
+                return;
+            }
+
+            //KROK W PRAWO GORNY BEZ SCIANY
+            if (ruch == 4 && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzyPuste(3) == true && SprawdzKolejnyRuchCzyPuste(1) == true && Krok == false)
+            {
+                Kierunek(1);
+                ruch = 1;
+                Krok = true;
+                return;
+            }
+            //KROK W PRAWO GORNY
+            if (RPrawo == true && ruch == 1 && SprawdzKolejnyRuchCzyPuste(2) == true  && Krok == true)
+            {
+                Kierunek(2);
+                ruch = 2;
+                Krok = false;
+                return;
+            }
+            //
+
+            //KROK W PRAWO DOLNY BEZ SCIANY
+            if (RPrawo == true && ruch == 2 && SprawdzKolejnyRuchCzyPuste(2) == false && SprawdzKolejnyRuchCzyPuste(1) == true && SprawdzKolejnyRuchCzyPuste(3) == true && Krok == false)
+            {
+                Kierunek(1);
+                ruch = 1;
+                Krok = true;
+                return;
+            }
+            //KROK W PRAWO DOLNY
+            if (RPrawo == true && ruch == 1 && SprawdzKolejnyRuchCzyPuste(4) == true && Krok == true)
+            {
+                Kierunek(4);
+                ruch = 4;
+                Krok = false;
+                return;
+            }
+            //if (ruch == 1 && SprawdzKolejnyRuchCzyPuste(4) == true )
+            //{
+            //    Kierunek(4);
+            //    ruch = 4;
+            //    Krok = false;
+            //    return;
+            //}
+
+            //if (ruch == 1 && SprawdzKolejnyRuchCzyPuste(2) == true)
+            //{
+            //    Kierunek(4);
+            //    ruch = 4;
+            //    Krok = false;
+            //    return;
+            //}
+        }
 
         public void move()
         {
@@ -298,14 +495,14 @@ namespace Projekt_symulujący_strategie_sprzątania
 
             // RUCh GORA
 
-            if (ruch == 2 && SprawdzKolejnyRuchCzyPuste(2) == true)
+            if (ruch == 4 && SprawdzKolejnyRuchCzyPuste(4) == true)
             {
 
                 Kierunek(2);
                 ruch = 2;
                 return;
             }
-            if (ruch == 2 && SprawdzKolejnyRuchCzyPuste(2) == false)
+            if (ruch == 4 && SprawdzKolejnyRuchCzyPuste(4) == false)
             {
 
                 Kierunek(7);
@@ -314,14 +511,14 @@ namespace Projekt_symulujący_strategie_sprzątania
             }
             // RUCh DOL
 
-            if (ruch == 4 && SprawdzKolejnyRuchCzyPuste(4) == true)
+            if (ruch == 2 && SprawdzKolejnyRuchCzyPuste(2) == true)
             {
 
-                Kierunek(4);
-                ruch = 4;
+                Kierunek(2);
+                ruch = 2;
                 return;
             }
-            if (ruch == 4 && SprawdzKolejnyRuchCzyPuste(4) == false)
+            if (ruch == 2 && SprawdzKolejnyRuchCzyPuste(2) == false)
             {
 
                 Kierunek(5);
@@ -338,7 +535,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 return;
             }
 
-            if (ruch == 5 && SprawdzKolejnyRuchCzyPuste(5) == false && SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzyPuste(8))
+            if (ruch == 5 && SprawdzKolejnyRuchCzyPuste(5) == false && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzyPuste(8))
             {
                 ruch = 8;
                 Kierunek(8);
@@ -363,7 +560,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 return;
             }
 
-            if (ruch == 6 && SprawdzKolejnyRuchCzyPuste(6) == false && SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzyPuste(7))
+            if (ruch == 6 && SprawdzKolejnyRuchCzyPuste(6) == false && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzyPuste(7))
             {
                 ruch = 7;
                 Kierunek(7);
@@ -385,7 +582,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
                 return;
             }
-            if (ruch == 7 && SprawdzKolejnyRuchCzyPuste(7) == false && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzyPuste(6))
+            if (ruch == 7 && SprawdzKolejnyRuchCzyPuste(7) == false && SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzyPuste(6))
             {
                 ruch = 6;
                 Kierunek(6);
@@ -416,7 +613,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 return;
             }
 
-            if (ruch == 8 && SprawdzKolejnyRuchCzyPuste(8) == false && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzyPuste(5))
+            if (ruch == 8 && SprawdzKolejnyRuchCzyPuste(8) == false && SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzyPuste(5))
             {
                 ruch = 5;
                 Kierunek(5);
@@ -424,28 +621,28 @@ namespace Projekt_symulujący_strategie_sprzątania
                 return;
             }
             // ROGI ZAMKNIENTE
-            if (ruch == 5  && SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzySciana(5) == true && SprawdzKolejnyRuchCzySciana(1) == true)
+            if (ruch == 5  && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzySciana(5) == true && SprawdzKolejnyRuchCzySciana(1) == true)
             {
                 ruch = 7;
                 Kierunek(7);
 
                 return;
             }
-            if (ruch == 6 && SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzySciana(6) == true && SprawdzKolejnyRuchCzySciana(3) == true)
+            if (ruch == 6 && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzySciana(6) == true && SprawdzKolejnyRuchCzySciana(3) == true)
             {
                 ruch = 8;
                 Kierunek(8);
 
                 return;
             }
-            if (ruch == 7 && SprawdzKolejnyRuchCzySciana(3) == true && SprawdzKolejnyRuchCzySciana(7) == true && SprawdzKolejnyRuchCzySciana(4) == true)
+            if (ruch == 7 && SprawdzKolejnyRuchCzySciana(3) == true && SprawdzKolejnyRuchCzySciana(7) == true && SprawdzKolejnyRuchCzySciana(2) == true)
             {
                 ruch = 5;
                 Kierunek(5);
 
                 return;
             }
-            if (ruch == 8 && SprawdzKolejnyRuchCzySciana(1) == true && SprawdzKolejnyRuchCzySciana(8) == true && SprawdzKolejnyRuchCzySciana(4) == true)
+            if (ruch == 8 && SprawdzKolejnyRuchCzySciana(1) == true && SprawdzKolejnyRuchCzySciana(8) == true && SprawdzKolejnyRuchCzySciana(2) == true)
             {
                 ruch = 6;
                 Kierunek(6);
@@ -454,28 +651,28 @@ namespace Projekt_symulujący_strategie_sprzątania
             }
 
             // ROGI OTWARTE
-            if (ruch == 5 && SprawdzKolejnyRuchCzySciana(2) == false && SprawdzKolejnyRuchCzySciana(5) == true && SprawdzKolejnyRuchCzySciana(1) == false)
+            if (ruch == 5 && SprawdzKolejnyRuchCzySciana(4) == false && SprawdzKolejnyRuchCzySciana(5) == true && SprawdzKolejnyRuchCzySciana(1) == false)
             {
                 ruch = 1;
                 Kierunek(1);
 
                 return;
             }
-            if (ruch == 6 && SprawdzKolejnyRuchCzySciana(2) == false && SprawdzKolejnyRuchCzySciana(6) == true && SprawdzKolejnyRuchCzySciana(3) == false)
+            if (ruch == 6 && SprawdzKolejnyRuchCzySciana(4) == false && SprawdzKolejnyRuchCzySciana(6) == true && SprawdzKolejnyRuchCzySciana(3) == false)
             {
                 ruch = 3;
                 Kierunek(3);
 
                 return;
             }
-            if (ruch == 7 && SprawdzKolejnyRuchCzySciana(3) == false && SprawdzKolejnyRuchCzySciana(7) == true && SprawdzKolejnyRuchCzySciana(4) == false)
+            if (ruch == 7 && SprawdzKolejnyRuchCzySciana(3) == false && SprawdzKolejnyRuchCzySciana(7) == true && SprawdzKolejnyRuchCzySciana(2) == false)
             {
                 ruch = 3;
                 Kierunek(3);
 
                 return;
             }
-            if (ruch == 8 && SprawdzKolejnyRuchCzySciana(1) == false && SprawdzKolejnyRuchCzySciana(8) == true && SprawdzKolejnyRuchCzySciana(4) == false)
+            if (ruch == 8 && SprawdzKolejnyRuchCzySciana(1) == false && SprawdzKolejnyRuchCzySciana(8) == true && SprawdzKolejnyRuchCzySciana(2) == false)
             {
                 ruch = 1;
                 Kierunek(1);
