@@ -11,16 +11,19 @@ namespace Projekt_symulujący_strategie_sprzątania
     {
         public int x;
         public int y;
+        public bool a = false;
 
-        public void rysuj(Graphics g, Brush b)
+        Mapa mapa = new Mapa();
+        public void rysuj(Graphics g, Brush b ,int segment)
         {
-            for (int py = 0; py < 20; py++)
+            bool a = true;
+            for (int py = 0; py < mapa.Tab; py++)
             {
-                for (int px = 0; px < 20; px++)
+                for (int px = 0; px < mapa.Tab; px++)
                 {
-                    if (Form1.mapa.Plansza[py, px] == 99) { x = px * 14; y = py * 14; }
+                    if (Form1.mapa.Plansza[py, px] == 99) { x = px * segment; y = py * segment; }
 
-                    g.FillRectangle(b, x, y,14, 14);
+                    g.FillRectangle(b, x, y, segment, segment);
                  
                 }
             }
