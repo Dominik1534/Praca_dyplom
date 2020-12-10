@@ -325,7 +325,6 @@
             this.label9.Size = new System.Drawing.Size(10, 13);
             this.label9.TabIndex = 17;
             this.label9.Text = "-";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // Form1
             // 
@@ -355,7 +354,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.Load += new System.EventHandler(this.Form1_Load_1);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

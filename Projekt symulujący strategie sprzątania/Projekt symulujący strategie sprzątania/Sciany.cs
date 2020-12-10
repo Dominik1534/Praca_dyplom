@@ -22,7 +22,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 for (int px = 0; px < mapa.Tab; px++)
                 {
                     if (Form1.mapa.Plansza[py, px] == 99) { x = px * segment; y = py * segment; }
-
+                    
                     g.FillRectangle(b, x, y, segment, segment);
                  
                 }

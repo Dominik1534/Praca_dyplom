@@ -26,7 +26,9 @@ namespace Projekt_symulujący_strategie_sprzątania
         public int y;
         public int px;
         public int py;
-        
+        public int Poz_startX;
+        public int Poz_startY;
+
         public int ruch;
         private int q = 0;
      
@@ -125,6 +127,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
         public void Move_choise()
         {
+
             int r = 0;
             List<int> T_list = new List<int>();
             List<int> P_list = new List<int>();
@@ -158,10 +161,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 }
 
             }
-            foreach (var item in S_list)
-            {
-                Console.WriteLine(item);
-            }
+    
             var arr1 = S_list.ToArray();
             if (arr1.Length==0)
             {
@@ -1601,34 +1601,19 @@ namespace Projekt_symulujący_strategie_sprzątania
                 Form1.mapa.Plansza[py, px] = 11;
                 return;
             }
-            if (Form1.mapa.Plansza[py, px] == 11)
+            if (Form1.mapa.Plansza[py, px] >= 11 && Form1.mapa.Plansza[py, px] < 99 && Form1.mapa.Plansza[py, px] != 1)
             {
-                Form1.mapa.Plansza[py, px] = 12;
+                if (Form1.mapa.Plansza[py, px] < 19)
+                {
+                int zm= Form1.mapa.Plansza[py, px];
+                Form1.mapa.Plansza[py, px] = zm+1;
                 Ponowne_przejscia++;
                 return;
 
-            }
-            if (Form1.mapa.Plansza[py, px] == 12)
-            {
-                Form1.mapa.Plansza[py, px] = 13;
-                Ponowne_przejscia++;
-                return;
 
+                }
             }
-            if (Form1.mapa.Plansza[py, px] == 13)
-            {
-                Form1.mapa.Plansza[py, px] = 14;
-                Ponowne_przejscia++;
-                return;
-
-            }
-            if (Form1.mapa.Plansza[py, px] == 14)
-            {
-                Form1.mapa.Plansza[py, px] = 15;
-                Ponowne_przejscia++;
-                return;
-
-            }
+       
 
         }
 
@@ -1725,7 +1710,9 @@ namespace Projekt_symulujący_strategie_sprzątania
                             y = ppy * segment;
                             px = ppx;
                             py = ppy;
-                            
+                            Poz_startX = px;
+                            Poz_startY = py;
+                            Form1.mapa.Plansza[py, px] = 10;
 
                         }
 
