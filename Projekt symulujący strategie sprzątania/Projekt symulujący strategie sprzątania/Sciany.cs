@@ -16,7 +16,7 @@ namespace Projekt_symulujący_strategie_sprzątania
         Mapa mapa = new Mapa();
         public void rysuj(Graphics g, Brush b ,int segment)
         {
-            bool a = true;
+            
             for (int py = 0; py < mapa.Tab; py++)
             {
                 for (int px = 0; px < mapa.Tab; px++)

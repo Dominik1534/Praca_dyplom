@@ -16,9 +16,7 @@ namespace Projekt_symulujący_strategie_sprzątania
     {
 
         public int segment;
-        //public int[] x = new int[1000];
-        //public int[] y = new int[1000];
-        //public int[] z = new int[1];
+        
         Mapa mapa = new Mapa();
         Random random = new Random();
 
@@ -142,10 +140,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 {
                     T_list.Add(i);
                 }
-                //if (SprawdzKolejnyRuchCzySciana(i))
-                //{
-                //    S_list.Add(i);
-                //}
+             
 
 
             }
@@ -171,7 +166,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
 
             r = arr1[random.Next(arr1.Length)];
-            //r = arr1.Min();
+          
             Kierunek(r);
             ruch = r;
             

@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Projekt_symulujący_strategie_sprzątania
@@ -19,7 +12,7 @@ namespace Projekt_symulujący_strategie_sprzątania
     {
         public bool czy_aktywna;
         private Odkurzacz odkurzacz;
-        private Brud brud;
+        
         private Sciany sciany = new Sciany();
         private Trasa trasa = new Trasa();
         public static string TextIlosc;
@@ -97,18 +90,6 @@ namespace Projekt_symulujący_strategie_sprzątania
                 Statystyki();
                 Stoper();
 
-                //brud.rysuj_brud(panel1.CreateGraphics(), new SolidBrush(Color.Red));
-
-
-                //label1.Text = Brud.wynik.ToString();
-
-                //brud.Zbieranie(odkurzacz.x, odkurzacz.y,panel1.CreateGraphics(), new SolidBrush(Color.Green));
-
-                //if (mapa.IloscBrudu==Brud.wynik)
-                //{
-                //    //MessageBox.Show("Brak brudu");
-                //    Application.Exit();
-                //}
             }
             else
             {
@@ -200,7 +181,7 @@ namespace Projekt_symulujący_strategie_sprzątania
             odkurzacz = new Odkurzacz(panel1.Width, panel1.Height);
             Odswierz();
             
-            //brud = new Brud(odkurzacz.segment);
+            
         }
         private void pauzaToolStripMenuItem_Click(object sender, EventArgs e)
         {
