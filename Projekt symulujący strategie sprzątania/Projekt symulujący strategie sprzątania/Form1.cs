@@ -12,7 +12,7 @@ namespace Projekt_symulujący_strategie_sprzątania
     {
         public bool czy_aktywna;
         private Odkurzacz odkurzacz;
-        
+
         private Sciany sciany = new Sciany();
         private Trasa trasa = new Trasa();
         public static string TextIlosc;
@@ -38,13 +38,13 @@ namespace Projekt_symulujący_strategie_sprzątania
         }
         private void Form1_Load_1(object sender, EventArgs e)
         {
-           mapa.Plansza =mapa.Plansza6;
+            mapa.Plansza = mapa.Plansza6;
             t.Interval = 15000;
-           
+
 
             t.Tick += new EventHandler(StartThread);
             t.Start();
-            
+
         }
         private void Odswierz()
         {
@@ -101,33 +101,33 @@ namespace Projekt_symulujący_strategie_sprzątania
 
         public void TakeScreenShot()
         {
-            if (czy_aktywna==true)
+            if (czy_aktywna == true)
             {
 
-            Nr++;
-            var CurrentDirectory = Directory.GetCurrentDirectory();
-            Console.WriteLine(CurrentDirectory);
-            bmpScreenshot = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, PixelFormat.Format32bppArgb);
-            gfxScreenshot = Graphics.FromImage(bmpScreenshot);
-            gfxScreenshot.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0, Screen.PrimaryScreen.Bounds.Size, CopyPixelOperation.SourceCopy);
-            bmpScreenshot.Save(AppDomain.CurrentDomain.BaseDirectory + $"{label7.Text}_{Nr}.Png", ImageFormat.Png);
-            th.Abort();
+                Nr++;
+                var CurrentDirectory = Directory.GetCurrentDirectory();
+                Console.WriteLine(CurrentDirectory);
+                bmpScreenshot = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, PixelFormat.Format32bppArgb);
+                gfxScreenshot = Graphics.FromImage(bmpScreenshot);
+                gfxScreenshot.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0, Screen.PrimaryScreen.Bounds.Size, CopyPixelOperation.SourceCopy);
+                bmpScreenshot.Save(AppDomain.CurrentDomain.BaseDirectory + $"{label7.Text}_{Nr}.Png", ImageFormat.Png);
+                th.Abort();
             }
-           
+
         }
 
         public void StartThread(object sender, EventArgs e)
         {
-            if (czy_aktywna==true)
+            if (czy_aktywna == true)
             {
 
-            PauzaProgramu();
-            th = new Thread(new ThreadStart(TakeScreenShot));
-            PauzaProgramu();
-            th.Start();
+                PauzaProgramu();
+                th = new Thread(new ThreadStart(TakeScreenShot));
+                PauzaProgramu();
+                th.Start();
             }
         }
-      
+
         private void Statystyki()
         {
             switch (NrAlgorytmu)
@@ -161,16 +161,16 @@ namespace Projekt_symulujący_strategie_sprzątania
             panel1.CreateGraphics().DrawString("Symulacja zatrzymana", f, b, 40, 125);
 
         }
-        private void Stoper ()
-            {
+        private void Stoper()
+        {
             stopWatch.Start();
             TimeSpan ts = stopWatch.Elapsed;
 
             string elapsedTime = String.Format("{0:00}:{1:00}",
                  ts.Minutes, ts.Seconds
                 );
-           label9.Text=elapsedTime;
-        
+            label9.Text = elapsedTime;
+
         }
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -180,8 +180,8 @@ namespace Projekt_symulujący_strategie_sprzątania
             czy_aktywna = true;
             odkurzacz = new Odkurzacz(panel1.Width, panel1.Height);
             Odswierz();
-            
-            
+
+
         }
         private void pauzaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -234,7 +234,7 @@ namespace Projekt_symulujący_strategie_sprzątania
         private void WielePokoiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mapa.WyborPlanszy(1);
-           
+
         }
 
         private void JadalniaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -247,7 +247,7 @@ namespace Projekt_symulujący_strategie_sprzątania
         {
             mapa.WyborPlanszy(3);
 
-        
+
         }
 
         private void losowyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -271,7 +271,7 @@ namespace Projekt_symulujący_strategie_sprzątania
         {
             NrAlgorytmu = 4;
 
-            
+
 
         }
         private void Wyjscie_Click(object sender, EventArgs e)
@@ -279,7 +279,7 @@ namespace Projekt_symulujący_strategie_sprzątania
             Application.Exit();
         }
 
-       
+
         private void button1_Click(object sender, EventArgs e)
         {
             Process currentProcess = Process.GetCurrentProcess();
@@ -289,6 +289,6 @@ namespace Projekt_symulujący_strategie_sprzątania
 
         }
 
-      
+
     }
 }

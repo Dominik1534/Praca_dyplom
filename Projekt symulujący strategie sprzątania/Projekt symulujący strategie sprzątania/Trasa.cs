@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Projekt_symulujący_strategie_sprzątania
 {
@@ -13,19 +9,19 @@ namespace Projekt_symulujący_strategie_sprzątania
         public int x;
         public int y;
         Mapa mapa = new Mapa();
-        List<Color> Kolory = new List<Color>() {Color.DarkBlue,Color.Blue,Color.Cyan,Color.YellowGreen,Color.Yellow,Color.Orange,Color.OrangeRed,Color.Red,Color.DarkRed};
+        List<Color> Kolory = new List<Color>() { Color.DarkBlue, Color.Blue, Color.Cyan, Color.YellowGreen, Color.Yellow, Color.Orange, Color.OrangeRed, Color.Red, Color.DarkRed };
         public void rysuj(Graphics g, Brush b, int segment)
         {
             for (int py = 0; py < mapa.Tab; py++)
             {
                 for (int px = 0; px < mapa.Tab; px++)
                 {
-                   
+
                     if (Form1.mapa.Plansza[py, px] == 10)
-                    { 
+                    {
                         x = px * segment;
-                        y = py * segment; 
-                    g.FillRectangle(b, x, y, segment, segment);
+                        y = py * segment;
+                        g.FillRectangle(b, x, y, segment, segment);
                     }
                     if (Form1.mapa.Plansza[py, px] == 11)
                     {

@@ -58,7 +58,6 @@
             this.Ponowne_przejscia = new System.Windows.Forms.Label();
             this.Ponowne_przejscia_liczba = new System.Windows.Forms.Label();
             this.Wyjscie = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
@@ -298,16 +297,6 @@
             this.Wyjscie.UseVisualStyleBackColor = true;
             this.Wyjscie.Click += new System.EventHandler(this.Wyjscie_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(465, 256);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -333,7 +322,6 @@
             this.ClientSize = new System.Drawing.Size(551, 351);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.Wyjscie);
             this.Controls.Add(this.Ponowne_przejscia_liczba);
             this.Controls.Add(this.Ponowne_przejscia);
@@ -393,7 +381,6 @@
         private System.Windows.Forms.ToolStripMenuItem wzdłóżŚcianToolStripMenuItem;
         private System.Windows.Forms.Button Wyjscie;
         private System.Windows.Forms.ToolStripMenuItem zMapaToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
     }

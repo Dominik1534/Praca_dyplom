@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Projekt_symulujący_strategie_sprzątania
 {
     public class Mapa
     {
-        public int[,] Plansza; 
+        public int[,] Plansza;
         public double LiczbaCzystychPol = 0;
         public double LiczbaBrudnychPol = 0;
         public double LiczbaPol = 0;
         public double LiczbaScian = 0;
         public double ProcentCzystosci;
-        public int Tab=40;
-        
+        public int Tab = 40;
+
 
 
 
@@ -42,7 +38,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                         { 99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99},
 
             };
-       
+
 
         public int[,] Plansza2 = new int[20, 20]{
                         { 99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99 },
@@ -67,7 +63,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                         { 99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99},
 
             };
-        
+
 
         public int[,] Plansza3 = new int[20, 20]{
                         { 99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99 },
@@ -92,7 +88,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                         { 99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99},
 
             };
-        public int[,] Plansza4= new int[60, 60]{
+        public int[,] Plansza4 = new int[60, 60]{
                         { 99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99},
                         { 99,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,99},
                         { 99,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,99},
@@ -159,7 +155,7 @@ namespace Projekt_symulujący_strategie_sprzątania
         public int[,] Plansza6 = new int[40, 40]{
                         { 99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99},
                         { 99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99},
-                        { 99,99,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,99,99,0 ,0 ,0 ,0, 0, 0 ,18 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,99,99},
+                        { 99,99,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,99,99,0 ,0 ,0 ,0, 0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,99,99},
                         { 99,99,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,99,99,0 ,0 ,0 ,0, 0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,99,99},
                         { 99,99,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,99,99,0 ,0 ,0 ,0, 0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,99,99},
                         { 99,99,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,99,99,0 ,0 ,0 ,0, 0, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,0 ,99,99},
@@ -242,7 +238,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                         { 99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99},
 
             };
-        //public int IloscBrudu=0;
+
         public void WyborPlanszy(int NrMapy)
         {
 
@@ -263,13 +259,13 @@ namespace Projekt_symulujący_strategie_sprzątania
                 default:
                     Plansza = Plansza6;
                     break;
-                
+
             }
 
 
         }
         public void ResetPlanszy()
-        { 
+        {
             for (int py = 0; py < Tab; py++)
             {
                 for (int px = 0; px < Tab; px++)
@@ -286,8 +282,8 @@ namespace Projekt_symulujący_strategie_sprzątania
         public void WymiaryTablicy()
         {
             int STab = Plansza.Length;
-           double Tab2 = Math.Sqrt(STab);
-            //Tab = Convert.ToInt32(Tab2);
+            double Tab2 = Math.Sqrt(STab);
+
             Tab = 60;
         }
         public void WyczyszczonePola()
@@ -314,23 +310,9 @@ namespace Projekt_symulujący_strategie_sprzątania
                 }
 
             }
-            
-            ProcentCzystosci = (LiczbaCzystychPol /(LiczbaPol - LiczbaScian) ) * 100;
+
+            ProcentCzystosci = (LiczbaCzystychPol / (LiczbaPol - LiczbaScian)) * 100;
         }
-        //public void SprawdzIloscBrudu()
-        // {
-        //     for (int py = 0; py < 20; py++)
-        //     {
-        //         for (int px = 0; px < 20; px++)
-        //         {
-        //             if (Plansza[py, px] == 5)
-        //             {
-        //                 IloscBrudu++;
-
-        //             }
-        //         }
-
-        //     }
-        // }
     }
 }
+  

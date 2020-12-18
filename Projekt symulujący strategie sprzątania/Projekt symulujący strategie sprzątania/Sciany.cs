@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 
 namespace Projekt_symulujący_strategie_sprzątania
 {
@@ -14,22 +9,22 @@ namespace Projekt_symulujący_strategie_sprzątania
         public bool a = false;
 
         Mapa mapa = new Mapa();
-        public void rysuj(Graphics g, Brush b ,int segment)
+        public void rysuj(Graphics g, Brush b, int segment)
         {
-            
+
             for (int py = 0; py < mapa.Tab; py++)
             {
                 for (int px = 0; px < mapa.Tab; px++)
                 {
                     if (Form1.mapa.Plansza[py, px] == 99) { x = px * segment; y = py * segment; }
-                    
+
                     g.FillRectangle(b, x, y, segment, segment);
-                 
+
                 }
             }
 
-            }
-            
+        }
+
 
     }
 }

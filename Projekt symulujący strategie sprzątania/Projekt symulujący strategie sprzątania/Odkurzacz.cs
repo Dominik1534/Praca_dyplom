@@ -1,14 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Projekt_symulujący_strategie_sprzątania
 {
@@ -16,7 +8,7 @@ namespace Projekt_symulujący_strategie_sprzątania
     {
 
         public int segment;
-        
+
         Mapa mapa = new Mapa();
         Random random = new Random();
 
@@ -29,7 +21,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
         public int ruch;
         private int q = 0;
-     
+
         private bool gora;
         private bool lewo;
         private bool prawo;
@@ -37,7 +29,7 @@ namespace Projekt_symulujący_strategie_sprzątania
         public bool Krok = false;
         public bool RLewo = false;
         public bool RPrawo = false;
-        public bool Inicjacja=true;
+        public bool Inicjacja = true;
         public bool Krok1 = false;
         public bool Krok2 = false;
         public bool Krok3 = false;
@@ -51,7 +43,7 @@ namespace Projekt_symulujący_strategie_sprzątania
             lewo = false;
             prawo = false;
             dol = false;
-          
+
 
             if (kierunek == 4)
             {
@@ -81,7 +73,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 prawo = true;
 
             }
-            if (kierunek==5)
+            if (kierunek == 5)
             {
                 //prawy góra
                 x = x + segment;
@@ -92,7 +84,7 @@ namespace Projekt_symulujący_strategie_sprzątania
             if (kierunek == 6)
             {
                 //lewa Górea
-                x = x -segment;
+                x = x - segment;
                 px--;
                 y = y - segment;
                 py--;
@@ -114,11 +106,11 @@ namespace Projekt_symulujący_strategie_sprzątania
                 py++;
             }
 
-            if(Form1.mapa.Plansza[py, px] == 0)               
+            if (Form1.mapa.Plansza[py, px] == 0)
             {
                 Form1.mapa.Plansza[py, px] = 10;
             }
-            
+
 
 
         }
@@ -136,11 +128,11 @@ namespace Projekt_symulujący_strategie_sprzątania
                 {
                     P_list.Add(i);
                 }
-                if (SprawdzKolejnyRuchCzyTrasa(i)==false)
+                if (SprawdzKolejnyRuchCzyTrasa(i) == false)
                 {
                     T_list.Add(i);
                 }
-             
+
 
 
             }
@@ -148,29 +140,29 @@ namespace Projekt_symulujący_strategie_sprzątania
             {
                 foreach (int P in P_list)
                 {
-                    if (T==P)
+                    if (T == P)
                     {
                         S_list.Add(P);
-                        
+
                     }
                 }
 
             }
-    
+
             var arr1 = S_list.ToArray();
-            if (arr1.Length==0)
+            if (arr1.Length == 0)
             {
                 arr1 = P_list.ToArray();
-               
+
             }
 
 
             r = arr1[random.Next(arr1.Length)];
-          
+
             Kierunek(r);
             ruch = r;
-            
-         
+
+
 
         }
         public bool SprawdzKolejnyRuchCzyTrasa(int ruch)
@@ -193,12 +185,12 @@ namespace Projekt_symulujący_strategie_sprzątania
             if (ruch == 3 && Form1.mapa.Plansza[py, px - 1] == 99) { return true; }
             if (ruch == 4 && Form1.mapa.Plansza[py - 1, px] == 99) { return true; }
 
-            if (ruch == 5 && Form1.mapa.Plansza[py-1 , px+1 ] == 99) { return true; }
-            if (ruch == 6 && Form1.mapa.Plansza[py-1 , px -1] == 99) { return true; }
-            if (ruch == 7 && Form1.mapa.Plansza[py+1 , px-1] == 99) { return true; }
-            if (ruch == 8 && Form1.mapa.Plansza[py +1, px+1 ] == 99) { return true; }
+            if (ruch == 5 && Form1.mapa.Plansza[py - 1, px + 1] == 99) { return true; }
+            if (ruch == 6 && Form1.mapa.Plansza[py - 1, px - 1] == 99) { return true; }
+            if (ruch == 7 && Form1.mapa.Plansza[py + 1, px - 1] == 99) { return true; }
+            if (ruch == 8 && Form1.mapa.Plansza[py + 1, px + 1] == 99) { return true; }
 
-        
+
 
             return false;
         }
@@ -214,7 +206,7 @@ namespace Projekt_symulujący_strategie_sprzątania
             if (ruch == 7 && Form1.mapa.Plansza[py + 1, px - 1] != 99) { return true; }
             if (ruch == 8 && Form1.mapa.Plansza[py + 1, px + 1] != 99) { return true; }
 
-           
+
 
             return false;
         }
@@ -222,9 +214,9 @@ namespace Projekt_symulujący_strategie_sprzątania
         public void S_move()
         {
             //RUCH prawo INICJACJA
-            
-            
-            if (Inicjacja == true && ruch==1 && SprawdzKolejnyRuchCzyPuste(1)==true)
+
+
+            if (Inicjacja == true && ruch == 1 && SprawdzKolejnyRuchCzyPuste(1) == true)
             {
                 Kierunek(1);
                 ruch = 1;
@@ -256,7 +248,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
             //PRAWY GORNY ROG
 
-            if (ruch == 4 && SprawdzKolejnyRuchCzySciana(4) == true &&  SprawdzKolejnyRuchCzySciana(1) == true)
+            if (ruch == 4 && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzySciana(1) == true)
             {
                 Kierunek(3);
                 ruch = 3;
@@ -266,7 +258,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 return;
             }
             //PRAWY DOLNY ROG
-            if (ruch == 2 && SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzySciana(1) == true )
+            if (ruch == 2 && SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzySciana(1) == true)
             {
                 Kierunek(3);
                 ruch = 3;
@@ -276,7 +268,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 return;
             }
             //PRAWY GORNY RÓG RUCH W PRAWY 
-            if ( ruch == 1 && SprawdzKolejnyRuchCzyPuste(2) == true && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzySciana(1) == true)
+            if (ruch == 1 && SprawdzKolejnyRuchCzyPuste(2) == true && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzySciana(1) == true)
             {
                 Kierunek(2);
                 ruch = 2;
@@ -287,7 +279,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 return;
             }
             //PRAWY DOLNY RÓG RUCH W PRAWY
-            if ( ruch == 1 && SprawdzKolejnyRuchCzyPuste(4) == true && SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzySciana(1) == true)
+            if (ruch == 1 && SprawdzKolejnyRuchCzyPuste(4) == true && SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzySciana(1) == true)
             {
                 Kierunek(4);
                 ruch = 4;
@@ -298,7 +290,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 return;
             }
             //KROK W LEWO GORNY BEZ SCIANY
-            if (RLewo==true && ruch == 4 && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzyPuste(3) == true && SprawdzKolejnyRuchCzyPuste(1) == true && Krok1 == false)
+            if (RLewo == true && ruch == 4 && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzyPuste(3) == true && SprawdzKolejnyRuchCzyPuste(1) == true && Krok1 == false)
             {
                 Kierunek(3);
                 ruch = 3;
@@ -306,7 +298,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 return;
             }
             //KROK W LEWO GORNY
-            if (RLewo == true && ruch == 3 && SprawdzKolejnyRuchCzyPuste(2) == true &&  Krok1==true)
+            if (RLewo == true && ruch == 3 && SprawdzKolejnyRuchCzyPuste(2) == true && Krok1 == true)
             {
                 Kierunek(2);
                 ruch = 2;
@@ -327,7 +319,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 return;
             }
             //KROK W LEWO DOLNY
-            if (RLewo == true && ruch == 3 && SprawdzKolejnyRuchCzyPuste(4) == true  && Krok2== true)
+            if (RLewo == true && ruch == 3 && SprawdzKolejnyRuchCzyPuste(4) == true && Krok2 == true)
             {
                 Kierunek(4);
                 ruch = 4;
@@ -338,7 +330,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 return;
             }
             //LEWY GORNY RÓG RUCH W LEWO 
-            if ( ruch ==3 && SprawdzKolejnyRuchCzyPuste(2) == true && SprawdzKolejnyRuchCzySciana(4) ==true && SprawdzKolejnyRuchCzySciana(3)==true)
+            if (ruch == 3 && SprawdzKolejnyRuchCzyPuste(2) == true && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzySciana(3) == true)
             {
                 Kierunek(2);
                 ruch = 2;
@@ -360,7 +352,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 return;
             }
             //LEWY GORNY RÓG RUCH W GORE 
-            if ( ruch == 4 && SprawdzKolejnyRuchCzyPuste(1) == true && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzySciana(3) == true)
+            if (ruch == 4 && SprawdzKolejnyRuchCzyPuste(1) == true && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzySciana(3) == true)
             {
                 Kierunek(1);
                 ruch = 1;
@@ -369,9 +361,9 @@ namespace Projekt_symulujący_strategie_sprzątania
                 Krok3 = true;
                 return;
             }
-        
+
             //LEWY DOLNY RÓG RUCH W DOL
-            if ( ruch == 2 && SprawdzKolejnyRuchCzyPuste(1) == true && SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzySciana(3) == true)
+            if (ruch == 2 && SprawdzKolejnyRuchCzyPuste(1) == true && SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzySciana(3) == true)
             {
                 Kierunek(1);
                 ruch = 1;
@@ -390,7 +382,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 return;
             }
             //KROK W PRAWO GORNY
-            if (RPrawo == true && ruch == 1 && SprawdzKolejnyRuchCzyPuste(2) == true  && Krok3 == true)
+            if (RPrawo == true && ruch == 1 && SprawdzKolejnyRuchCzyPuste(2) == true && Krok3 == true)
             {
                 Kierunek(2);
                 ruch = 2;
@@ -433,7 +425,7 @@ namespace Projekt_symulujący_strategie_sprzątania
             //    RPrawo = false;
             //    RLewo = true;
             //}
-         
+
         }
         public void move()
         {
@@ -470,7 +462,7 @@ namespace Projekt_symulujący_strategie_sprzątania
             int[] z = new int[4] { 1, 2, 3, 4 };
             int k = z[r.Next(4)];
 
-        
+
 
             if (prawo == true && Form1.mapa.Plansza[py, px + 1] == 99)
             {
@@ -537,18 +529,18 @@ namespace Projekt_symulujący_strategie_sprzątania
                     ruch = k;
                 }
             }
-        }  
+        }
         public void Random_move()
         {
             //RUCH PRAWO
             if (ruch == 1 && SprawdzKolejnyRuchCzyPuste(1) == true)
             {
-             
+
                 Kierunek(1);
                 ruch = 1;
                 return;
             }
-            if (ruch == 1 && SprawdzKolejnyRuchCzyPuste(1) == false )
+            if (ruch == 1 && SprawdzKolejnyRuchCzyPuste(1) == false)
             {
 
                 Kierunek(6);
@@ -631,13 +623,13 @@ namespace Projekt_symulujący_strategie_sprzątania
                 return;
             }
 
-            
+
             //RUCH 6
-            if (ruch == 6 && SprawdzKolejnyRuchCzyPuste(6)==true)
+            if (ruch == 6 && SprawdzKolejnyRuchCzyPuste(6) == true)
             {
                 ruch = 6;
                 Kierunek(6);
-                
+
                 return;
             }
 
@@ -702,7 +694,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 return;
             }
             // ROGI ZAMKNIENTE
-            if (ruch == 5  && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzySciana(5) == true && SprawdzKolejnyRuchCzySciana(1) == true)
+            if (ruch == 5 && SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzySciana(5) == true && SprawdzKolejnyRuchCzySciana(1) == true)
             {
                 ruch = 7;
                 Kierunek(7);
@@ -762,7 +754,7 @@ namespace Projekt_symulujący_strategie_sprzątania
             }
 
 
-        }     
+        }
         public void move2()
         {
             /*1-prawo
@@ -775,21 +767,21 @@ namespace Projekt_symulujący_strategie_sprzątania
             if (ruch == 1 && SprawdzKolejnyRuchCzySciana(1) == false)
             {
                 Form1.mapa.Plansza[py, px] = 10;
-                Kierunek(1);           
+                Kierunek(1);
                 ruch = 0;
                 return;
             }
-        
+
             if (Form1.mapa.Plansza[py + 1, px] == 0 && SprawdzKolejnyRuchCzySciana(2) == false && Form1.mapa.Plansza[py, px - 1] == 10)
             {
-                
-              
+
+
                 Kierunek(2);
 
                 return;
 
             }
-         
+
             if (Form1.mapa.Plansza[py, px - 1] == 0 && SprawdzKolejnyRuchCzySciana(3) == false && Form1.mapa.Plansza[py - 1, px] == 10)
             {
 
@@ -799,7 +791,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
 
             }
-           
+
             if (Form1.mapa.Plansza[py - 1, px] == 0 && SprawdzKolejnyRuchCzySciana(4) == false && Form1.mapa.Plansza[py, px + 1] == 10)
             {
 
@@ -810,7 +802,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
 
             }
-        
+
             if (Form1.mapa.Plansza[py, px + 1] == 0 && SprawdzKolejnyRuchCzySciana(1) == false && Form1.mapa.Plansza[py + 1, px] == 10)
             {
 
@@ -821,7 +813,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
             }
 
-            if (Form1.mapa.Plansza[py+1, px ] == 0 && SprawdzKolejnyRuchCzySciana(2) == false && Form1.mapa.Plansza[py - 1, px] == 10)
+            if (Form1.mapa.Plansza[py + 1, px] == 0 && SprawdzKolejnyRuchCzySciana(2) == false && Form1.mapa.Plansza[py - 1, px] == 10)
             {
 
 
@@ -831,7 +823,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
             }
 
-            if (Form1.mapa.Plansza[py , px-1] == 0 && SprawdzKolejnyRuchCzySciana(3) == false && Form1.mapa.Plansza[py, px+1] == 10)
+            if (Form1.mapa.Plansza[py, px - 1] == 0 && SprawdzKolejnyRuchCzySciana(3) == false && Form1.mapa.Plansza[py, px + 1] == 10)
             {
 
 
@@ -841,7 +833,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
             }
 
-            if (Form1.mapa.Plansza[py+1, px ] == 0 && SprawdzKolejnyRuchCzySciana(2) == false && Form1.mapa.Plansza[py, px + 1] == 10)
+            if (Form1.mapa.Plansza[py + 1, px] == 0 && SprawdzKolejnyRuchCzySciana(2) == false && Form1.mapa.Plansza[py, px + 1] == 10)
             {
 
 
@@ -851,7 +843,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
             }
 
-            if (Form1.mapa.Plansza[py , px+1] == 0 && SprawdzKolejnyRuchCzySciana(1) == false && Form1.mapa.Plansza[py-1, px] == 10)
+            if (Form1.mapa.Plansza[py, px + 1] == 0 && SprawdzKolejnyRuchCzySciana(1) == false && Form1.mapa.Plansza[py - 1, px] == 10)
             {
 
 
@@ -860,7 +852,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
 
             }
-            if (Form1.mapa.Plansza[py, px + 1] == 0 && SprawdzKolejnyRuchCzySciana(1) == false && Form1.mapa.Plansza[py , px-1] == 10)
+            if (Form1.mapa.Plansza[py, px + 1] == 0 && SprawdzKolejnyRuchCzySciana(1) == false && Form1.mapa.Plansza[py, px - 1] == 10)
             {
 
 
@@ -869,7 +861,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
 
             }
-            if (Form1.mapa.Plansza[py-1, px ] == 0 && SprawdzKolejnyRuchCzySciana(4) == false && Form1.mapa.Plansza[py, px-1 ] == 10)
+            if (Form1.mapa.Plansza[py - 1, px] == 0 && SprawdzKolejnyRuchCzySciana(4) == false && Form1.mapa.Plansza[py, px - 1] == 10)
             {
 
 
@@ -878,7 +870,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
 
             }
-            if (Form1.mapa.Plansza[py -1, px] == 0 && SprawdzKolejnyRuchCzySciana(4) == false && Form1.mapa.Plansza[py+1, px ] == 10)
+            if (Form1.mapa.Plansza[py - 1, px] == 0 && SprawdzKolejnyRuchCzySciana(4) == false && Form1.mapa.Plansza[py + 1, px] == 10)
             {
 
 
@@ -887,7 +879,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
 
             }
-            if (Form1.mapa.Plansza[py, px-1] == 0 && SprawdzKolejnyRuchCzySciana(3) == false && Form1.mapa.Plansza[py+1, px] == 10)
+            if (Form1.mapa.Plansza[py, px - 1] == 0 && SprawdzKolejnyRuchCzySciana(3) == false && Form1.mapa.Plansza[py + 1, px] == 10)
             {
 
 
@@ -896,7 +888,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
 
             }
-            if (Form1.mapa.Plansza[py, px - 1] == 0 && SprawdzKolejnyRuchCzySciana(3) == false && Form1.mapa.Plansza[py, px+1] == 10)
+            if (Form1.mapa.Plansza[py, px - 1] == 0 && SprawdzKolejnyRuchCzySciana(3) == false && Form1.mapa.Plansza[py, px + 1] == 10)
             {
 
 
@@ -905,7 +897,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
 
             }
-            if (Form1.mapa.Plansza[py - 1, px] == 10 && Form1.mapa.Plansza[py, px + 1] == 10 && Form1.mapa.Plansza[py + 1, px] == 10 && Form1.mapa.Plansza[py, px - 1] == 10 && Form1.mapa.Plansza[py-1, px - 1] == 10 && Form1.mapa.Plansza[py+1, px - 1] == 10 && Form1.mapa.Plansza[py-1, px + 1] == 10 && Form1.mapa.Plansza[py+1, px + 1] == 10)
+            if (Form1.mapa.Plansza[py - 1, px] == 10 && Form1.mapa.Plansza[py, px + 1] == 10 && Form1.mapa.Plansza[py + 1, px] == 10 && Form1.mapa.Plansza[py, px - 1] == 10 && Form1.mapa.Plansza[py - 1, px - 1] == 10 && Form1.mapa.Plansza[py + 1, px - 1] == 10 && Form1.mapa.Plansza[py - 1, px + 1] == 10 && Form1.mapa.Plansza[py + 1, px + 1] == 10)
             {
                 // Random r = new Random();
                 int rq = 1;
@@ -994,7 +986,7 @@ namespace Projekt_symulujący_strategie_sprzątania
             }
             //Rogi zewnetrzne
 
-            if (Form1.mapa.Plansza[py - 1, px] == 10 && Form1.mapa.Plansza[py, px + 1] == 10 && Form1.mapa.Plansza[py + 1, px] == 10 && Form1.mapa.Plansza[py, px - 1] == 10 && Form1.mapa.Plansza[py - 1, px + 1] == 99 )
+            if (Form1.mapa.Plansza[py - 1, px] == 10 && Form1.mapa.Plansza[py, px + 1] == 10 && Form1.mapa.Plansza[py + 1, px] == 10 && Form1.mapa.Plansza[py, px - 1] == 10 && Form1.mapa.Plansza[py - 1, px + 1] == 99)
             {
 
 
@@ -1012,7 +1004,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
 
             }
-            if (Form1.mapa.Plansza[py - 1, px] == 10 && Form1.mapa.Plansza[py, px + 1] == 10 && Form1.mapa.Plansza[py + 1, px] == 10 && Form1.mapa.Plansza[py, px - 1] == 10 && Form1.mapa.Plansza[py + 1, px - 1] == 99 )
+            if (Form1.mapa.Plansza[py - 1, px] == 10 && Form1.mapa.Plansza[py, px + 1] == 10 && Form1.mapa.Plansza[py + 1, px] == 10 && Form1.mapa.Plansza[py, px - 1] == 10 && Form1.mapa.Plansza[py + 1, px - 1] == 99)
             {
 
 
@@ -1033,7 +1025,7 @@ namespace Projekt_symulujący_strategie_sprzątania
             }
             // Rogi zewnetrzne 2
 
-            if (Form1.mapa.Plansza[py - 1, px] == 10 && Form1.mapa.Plansza[py, px + 1] == 10 && Form1.mapa.Plansza[py + 1, px] == 10 && Form1.mapa.Plansza[py, px - 1] == 10 && Form1.mapa.Plansza[py - 1, px + 1] == 0 )
+            if (Form1.mapa.Plansza[py - 1, px] == 10 && Form1.mapa.Plansza[py, px + 1] == 10 && Form1.mapa.Plansza[py + 1, px] == 10 && Form1.mapa.Plansza[py, px - 1] == 10 && Form1.mapa.Plansza[py - 1, px + 1] == 0)
             {
 
 
@@ -1042,7 +1034,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
 
             }
-            if (Form1.mapa.Plansza[py - 1, px] == 10 && Form1.mapa.Plansza[py, px + 1] == 10 && Form1.mapa.Plansza[py + 1, px] == 10 && Form1.mapa.Plansza[py, px - 1] == 10 && Form1.mapa.Plansza[py + 1, px + 1] == 0 )
+            if (Form1.mapa.Plansza[py - 1, px] == 10 && Form1.mapa.Plansza[py, px + 1] == 10 && Form1.mapa.Plansza[py + 1, px] == 10 && Form1.mapa.Plansza[py, px - 1] == 10 && Form1.mapa.Plansza[py + 1, px + 1] == 0)
             {
 
 
@@ -1051,7 +1043,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
 
             }
-            if (Form1.mapa.Plansza[py - 1, px] == 10 && Form1.mapa.Plansza[py, px + 1] == 10 && Form1.mapa.Plansza[py + 1, px] == 10 && Form1.mapa.Plansza[py, px - 1] == 10 && Form1.mapa.Plansza[py + 1, px - 1] == 0 )
+            if (Form1.mapa.Plansza[py - 1, px] == 10 && Form1.mapa.Plansza[py, px + 1] == 10 && Form1.mapa.Plansza[py + 1, px] == 10 && Form1.mapa.Plansza[py, px - 1] == 10 && Form1.mapa.Plansza[py + 1, px - 1] == 0)
             {
 
 
@@ -1060,7 +1052,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
 
             }
-            if (Form1.mapa.Plansza[py - 1, px] == 10 && Form1.mapa.Plansza[py, px + 1] == 10 && Form1.mapa.Plansza[py + 1, px] == 10 && Form1.mapa.Plansza[py, px - 1] == 10 && Form1.mapa.Plansza[py - 1, px - 1] == 0 )
+            if (Form1.mapa.Plansza[py - 1, px] == 10 && Form1.mapa.Plansza[py, px + 1] == 10 && Form1.mapa.Plansza[py + 1, px] == 10 && Form1.mapa.Plansza[py, px - 1] == 10 && Form1.mapa.Plansza[py - 1, px - 1] == 0)
             {
 
 
@@ -1070,7 +1062,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
             }
             //prosta wypełniona 
-            if (Form1.mapa.Plansza[py - 1, px] == 10 && Form1.mapa.Plansza[py, px + 1] == 99 && Form1.mapa.Plansza[py + 1, px] == 10 && Form1.mapa.Plansza[py, px - 1] == 10 && Form1.mapa.Plansza[py - 1, px - 1] == 10 && Form1.mapa.Plansza[py + 1, px - 1] == 10 && Form1.mapa.Plansza[py - 1, px + 1] == 99 && Form1.mapa.Plansza[py + 1, px + 1] == 99 &&  gora==true)
+            if (Form1.mapa.Plansza[py - 1, px] == 10 && Form1.mapa.Plansza[py, px + 1] == 99 && Form1.mapa.Plansza[py + 1, px] == 10 && Form1.mapa.Plansza[py, px - 1] == 10 && Form1.mapa.Plansza[py - 1, px - 1] == 10 && Form1.mapa.Plansza[py + 1, px - 1] == 10 && Form1.mapa.Plansza[py - 1, px + 1] == 99 && Form1.mapa.Plansza[py + 1, px + 1] == 99 && gora == true)
             {
 
 
@@ -1093,10 +1085,10 @@ namespace Projekt_symulujący_strategie_sprzątania
             if (Inicjacja == true && ruch == 1 && SprawdzKolejnyRuchCzyPuste(1) == true)
             {
                 Kierunek(1);
-                ruch = 1; 
+                ruch = 1;
                 return;
             }
-            if (Inicjacja == true && ruch == 1  && SprawdzKolejnyRuchCzySciana(1) == true)
+            if (Inicjacja == true && ruch == 1 && SprawdzKolejnyRuchCzySciana(1) == true)
             {
                 Kierunek(4);
                 ruch = 4;
@@ -1232,13 +1224,13 @@ namespace Projekt_symulujący_strategie_sprzątania
 
             }
 
-            
+
         }
         public void Random_move2()
         {
             //RUCH PRAWO
-            
-            int r=0;
+
+            int r = 0;
 
             if (ruch == 1)
             {
@@ -1250,7 +1242,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 }
                 else if (SprawdzKolejnyRuchCzySciana(4) == true)
                 {
-                    var arr1 = new[] { 2,  7 };
+                    var arr1 = new[] { 2, 7 };
                     r = arr1[random.Next(arr1.Length)];
                     Kierunek(r);
                     ruch = r;
@@ -1260,7 +1252,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 }
                 else if (SprawdzKolejnyRuchCzySciana(2) == true)
                 {
-                    var arr1 = new[] {  6, 4 };
+                    var arr1 = new[] { 6, 4 };
                     r = arr1[random.Next(arr1.Length)];
                     Kierunek(r);
                     ruch = r;
@@ -1270,7 +1262,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 }
                 else if (SprawdzKolejnyRuchCzyPuste(4) == true && SprawdzKolejnyRuchCzyPuste(2) == true && SprawdzKolejnyRuchCzyPuste(6) == true && SprawdzKolejnyRuchCzyPuste(7) == true)
                 {
-                    var arr1 = new[] { 4,2,6,7 };
+                    var arr1 = new[] { 4, 2, 6, 7 };
                     r = arr1[random.Next(arr1.Length)];
                     Kierunek(r);
                     ruch = r;
@@ -1293,7 +1285,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 }
                 else if (SprawdzKolejnyRuchCzySciana(4) == true)
                 {
-                    var arr1 = new[] {  2, 8 };
+                    var arr1 = new[] { 2, 8 };
                     r = arr1[random.Next(arr1.Length)];
                     Kierunek(r);
                     ruch = r;
@@ -1303,7 +1295,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 }
                 else if (SprawdzKolejnyRuchCzySciana(2) == true)
                 {
-                    var arr1 = new[] { 4, 5};
+                    var arr1 = new[] { 4, 5 };
                     r = arr1[random.Next(arr1.Length)];
                     Kierunek(r);
                     ruch = r;
@@ -1334,7 +1326,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 }
                 else if (SprawdzKolejnyRuchCzySciana(3) == true)
                 {
-                    var arr1 = new[] { 1,  8 };
+                    var arr1 = new[] { 1, 8 };
                     r = arr1[random.Next(arr1.Length)];
                     Kierunek(r);
                     ruch = r;
@@ -1344,7 +1336,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 }
                 else if (SprawdzKolejnyRuchCzySciana(1) == true)
                 {
-                    var arr1 = new[] {  3, 7 };
+                    var arr1 = new[] { 3, 7 };
                     r = arr1[random.Next(arr1.Length)];
                     Kierunek(r);
                     ruch = r;
@@ -1354,7 +1346,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 }
                 else if (SprawdzKolejnyRuchCzyPuste(3) == true && SprawdzKolejnyRuchCzyPuste(1) == true && SprawdzKolejnyRuchCzyPuste(7) == true && SprawdzKolejnyRuchCzyPuste(8) == true)
                 {
-                    var arr1 = new[] { 1, 8,  7, 3 };
+                    var arr1 = new[] { 1, 8, 7, 3 };
                     r = arr1[random.Next(arr1.Length)];
                     Kierunek(r);
                     ruch = r;
@@ -1373,7 +1365,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 }
                 else if (SprawdzKolejnyRuchCzySciana(3) == true)
                 {
-                    var arr1 = new[] { 1,  5 };
+                    var arr1 = new[] { 1, 5 };
                     r = arr1[random.Next(arr1.Length)];
                     Kierunek(r);
                     ruch = r;
@@ -1383,7 +1375,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 }
                 else if (SprawdzKolejnyRuchCzySciana(1) == true)
                 {
-                    var arr1 = new[] { 3,  6 };
+                    var arr1 = new[] { 3, 6 };
                     r = arr1[random.Next(arr1.Length)];
                     Kierunek(r);
                     ruch = r;
@@ -1393,7 +1385,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 }
                 else if (SprawdzKolejnyRuchCzyPuste(3) == true && SprawdzKolejnyRuchCzyPuste(1) == true && SprawdzKolejnyRuchCzyPuste(5) == true && SprawdzKolejnyRuchCzyPuste(6) == true)
                 {
-                    var arr1 = new[] { 3, 6,  5, 1 };
+                    var arr1 = new[] { 3, 6, 5, 1 };
                     r = arr1[random.Next(arr1.Length)];
                     Kierunek(r);
                     ruch = r;
@@ -1401,46 +1393,46 @@ namespace Projekt_symulujący_strategie_sprzątania
                 }
             }
 
-                // RUCH 5
+            // RUCH 5
 
-                if (ruch == 5)
+            if (ruch == 5)
+            {
+                if (SprawdzKolejnyRuchCzyPuste(5) == true)
                 {
-                    if (SprawdzKolejnyRuchCzyPuste(5) == true)
-                    {
-                        Kierunek(5);
-                        ruch = 5;
-                        return;
-                    }
-                    else if (SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzyPuste(1) == true)
-                    {
-                        var arr1 = new[] { 1, 8, 2, 3 };
-                        r = arr1[random.Next(arr1.Length)];
-                        Kierunek(r);
-                        ruch = r;
-                        return;
-
-                    }
-                    else if (SprawdzKolejnyRuchCzySciana(1) == true && SprawdzKolejnyRuchCzyPuste(4) == true)
-                    {
-                        var arr1 = new[] { 4, 6, 3,  2 };
-                        r = arr1[random.Next(arr1.Length)];
-                        Kierunek(r);
-                        ruch = r;
-                        return;
-
-
-                    }
-                    else if (SprawdzKolejnyRuchCzySciana(1) == true && SprawdzKolejnyRuchCzySciana(4) == true)
-                    {
-                        var arr1 = new[] { 3,  2 };
-                        r = arr1[random.Next(arr1.Length)];
-                        Kierunek(r);
-                        ruch = r;
-                        return;
-                    }
-                else if (SprawdzKolejnyRuchCzyPuste(4)==true && SprawdzKolejnyRuchCzyPuste(1)==true)
+                    Kierunek(5);
+                    ruch = 5;
+                    return;
+                }
+                else if (SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzyPuste(1) == true)
                 {
-                    var arr1 = new[] { 4,6,3,2,8,1 };
+                    var arr1 = new[] { 1, 8, 2, 3 };
+                    r = arr1[random.Next(arr1.Length)];
+                    Kierunek(r);
+                    ruch = r;
+                    return;
+
+                }
+                else if (SprawdzKolejnyRuchCzySciana(1) == true && SprawdzKolejnyRuchCzyPuste(4) == true)
+                {
+                    var arr1 = new[] { 4, 6, 3, 2 };
+                    r = arr1[random.Next(arr1.Length)];
+                    Kierunek(r);
+                    ruch = r;
+                    return;
+
+
+                }
+                else if (SprawdzKolejnyRuchCzySciana(1) == true && SprawdzKolejnyRuchCzySciana(4) == true)
+                {
+                    var arr1 = new[] { 3, 2 };
+                    r = arr1[random.Next(arr1.Length)];
+                    Kierunek(r);
+                    ruch = r;
+                    return;
+                }
+                else if (SprawdzKolejnyRuchCzyPuste(4) == true && SprawdzKolejnyRuchCzyPuste(1) == true)
+                {
+                    var arr1 = new[] { 4, 6, 3, 2, 8, 1 };
                     r = arr1[random.Next(arr1.Length)];
                     Kierunek(r);
                     ruch = r;
@@ -1449,145 +1441,145 @@ namespace Projekt_symulujący_strategie_sprzątania
             }
 
 
-                //RUCH 6
-               
-                if (ruch == 6)
+            //RUCH 6
+
+            if (ruch == 6)
+            {
+                if (SprawdzKolejnyRuchCzyPuste(6) == true)
                 {
-                    if (SprawdzKolejnyRuchCzyPuste(6) == true)
-                    {
-                        Kierunek(6);
-                        ruch = 6;
-                        return;
-                    }
-                    else if (SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzyPuste(3) == true)
-                    {
-                        var arr1 = new[] { 3,7,2,1 };
-                        r = arr1[random.Next(arr1.Length)];
-                        Kierunek(r);
-                        ruch = r;
-                        return;
+                    Kierunek(6);
+                    ruch = 6;
+                    return;
+                }
+                else if (SprawdzKolejnyRuchCzySciana(4) == true && SprawdzKolejnyRuchCzyPuste(3) == true)
+                {
+                    var arr1 = new[] { 3, 7, 2, 1 };
+                    r = arr1[random.Next(arr1.Length)];
+                    Kierunek(r);
+                    ruch = r;
+                    return;
 
-                    }
-                    else if (SprawdzKolejnyRuchCzySciana(3) == true && SprawdzKolejnyRuchCzyPuste(4) == true)
-                    {
-                        var arr1 = new[] {4,5,1,2 };
-                        r = arr1[random.Next(arr1.Length)];
-                        Kierunek(r);
-                        ruch = r;
-                        return;
+                }
+                else if (SprawdzKolejnyRuchCzySciana(3) == true && SprawdzKolejnyRuchCzyPuste(4) == true)
+                {
+                    var arr1 = new[] { 4, 5, 1, 2 };
+                    r = arr1[random.Next(arr1.Length)];
+                    Kierunek(r);
+                    ruch = r;
+                    return;
 
 
-                    }
-                    else if (SprawdzKolejnyRuchCzySciana(3) == true && SprawdzKolejnyRuchCzySciana(4) == true)
-                    {
-                        var arr1 = new[] { 2,1 };
-                        r = arr1[random.Next(arr1.Length)];
-                        Kierunek(r);
-                        ruch = r;
-                        return;
-                    }
+                }
+                else if (SprawdzKolejnyRuchCzySciana(3) == true && SprawdzKolejnyRuchCzySciana(4) == true)
+                {
+                    var arr1 = new[] { 2, 1 };
+                    r = arr1[random.Next(arr1.Length)];
+                    Kierunek(r);
+                    ruch = r;
+                    return;
+                }
                 else if (SprawdzKolejnyRuchCzyPuste(4) == true && SprawdzKolejnyRuchCzyPuste(3) == true)
                 {
-                    var arr1 = new[] { 4,5,1,2,7,3 };
+                    var arr1 = new[] { 4, 5, 1, 2, 7, 3 };
                     r = arr1[random.Next(arr1.Length)];
                     Kierunek(r);
                     ruch = r;
                     return;
                 }
             }
-                //RUCH 7
-              
-                if (ruch == 7)
+            //RUCH 7
+
+            if (ruch == 7)
+            {
+                if (SprawdzKolejnyRuchCzyPuste(7) == true)
                 {
-                    if (SprawdzKolejnyRuchCzyPuste(7) == true)
-                    {
-                        Kierunek(7);
-                        ruch = 7;
-                        return;
-                    }
-                    else if (SprawdzKolejnyRuchCzySciana(3) == true && SprawdzKolejnyRuchCzyPuste(2) == true)
-                    {
-                        var arr1 = new[] {2,8,1,4 };
-                        r = arr1[random.Next(arr1.Length)];
-                        Kierunek(r);
-                        ruch = r;
-                        return;
+                    Kierunek(7);
+                    ruch = 7;
+                    return;
+                }
+                else if (SprawdzKolejnyRuchCzySciana(3) == true && SprawdzKolejnyRuchCzyPuste(2) == true)
+                {
+                    var arr1 = new[] { 2, 8, 1, 4 };
+                    r = arr1[random.Next(arr1.Length)];
+                    Kierunek(r);
+                    ruch = r;
+                    return;
 
-                    }
-                    else if (SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzyPuste(3) == true)
-                    {
-                        var arr1 = new[] { 3,6,4,1 };
-                        r = arr1[random.Next(arr1.Length)];
-                        Kierunek(r);
-                        ruch = r;
-                        return;
+                }
+                else if (SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzyPuste(3) == true)
+                {
+                    var arr1 = new[] { 3, 6, 4, 1 };
+                    r = arr1[random.Next(arr1.Length)];
+                    Kierunek(r);
+                    ruch = r;
+                    return;
 
 
-                    }
-                    else if (SprawdzKolejnyRuchCzySciana(3) == true && SprawdzKolejnyRuchCzySciana(2) == true)
-                    {
-                        var arr1 = new[] { 4,1 };
-                        r = arr1[random.Next(arr1.Length)];
-                        Kierunek(r);
-                        ruch = r;
-                        return;
-                    }
+                }
+                else if (SprawdzKolejnyRuchCzySciana(3) == true && SprawdzKolejnyRuchCzySciana(2) == true)
+                {
+                    var arr1 = new[] { 4, 1 };
+                    r = arr1[random.Next(arr1.Length)];
+                    Kierunek(r);
+                    ruch = r;
+                    return;
+                }
                 else if (SprawdzKolejnyRuchCzyPuste(3) == true && SprawdzKolejnyRuchCzyPuste(2) == true)
                 {
-                    var arr1 = new[] { 2,8,1,4,6,3 };
+                    var arr1 = new[] { 2, 8, 1, 4, 6, 3 };
                     r = arr1[random.Next(arr1.Length)];
                     Kierunek(r);
                     ruch = r;
                     return;
                 }
             }
-                //RUCH 8
-          
-                if (ruch == 8)
+            //RUCH 8
+
+            if (ruch == 8)
+            {
+                if (SprawdzKolejnyRuchCzyPuste(8) == true)
                 {
-                    if (SprawdzKolejnyRuchCzyPuste(8)==true)
-                    {
-                        Kierunek(8);
-                        ruch = 8;
-                        return;
-                    }
-                    else if (SprawdzKolejnyRuchCzySciana(1) == true && SprawdzKolejnyRuchCzyPuste(2) == true)
-                    {
-                        var arr1 = new[] { 2,7,3,4 };
-                        r = arr1[random.Next(arr1.Length)];
-                        Kierunek(r);
-                        ruch = r;
-                        return;
+                    Kierunek(8);
+                    ruch = 8;
+                    return;
+                }
+                else if (SprawdzKolejnyRuchCzySciana(1) == true && SprawdzKolejnyRuchCzyPuste(2) == true)
+                {
+                    var arr1 = new[] { 2, 7, 3, 4 };
+                    r = arr1[random.Next(arr1.Length)];
+                    Kierunek(r);
+                    ruch = r;
+                    return;
 
-                    }
-                    else if (SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzyPuste(1) == true)
-                    {
-                        var arr1 = new[] {1,5,4,3 };
-                        r = arr1[random.Next(arr1.Length)];
-                        Kierunek(r);
-                        ruch = r;
-                        return;
+                }
+                else if (SprawdzKolejnyRuchCzySciana(2) == true && SprawdzKolejnyRuchCzyPuste(1) == true)
+                {
+                    var arr1 = new[] { 1, 5, 4, 3 };
+                    r = arr1[random.Next(arr1.Length)];
+                    Kierunek(r);
+                    ruch = r;
+                    return;
 
 
-                    }
-                    else if (SprawdzKolejnyRuchCzySciana(1) == true && SprawdzKolejnyRuchCzySciana(2) == true)
-                    {
-                        var arr1 = new[] { 3,4 };
-                        r = arr1[random.Next(arr1.Length)];
-                        Kierunek(r);
-                        ruch = r;
-                        return;
-                    }
+                }
+                else if (SprawdzKolejnyRuchCzySciana(1) == true && SprawdzKolejnyRuchCzySciana(2) == true)
+                {
+                    var arr1 = new[] { 3, 4 };
+                    r = arr1[random.Next(arr1.Length)];
+                    Kierunek(r);
+                    ruch = r;
+                    return;
+                }
                 else if (SprawdzKolejnyRuchCzyPuste(2) == true && SprawdzKolejnyRuchCzyPuste(1) == true)
                 {
-                    var arr1 = new[] { 1,5,4,3,7,2 };
+                    var arr1 = new[] { 1, 5, 4, 3, 7, 2 };
                     r = arr1[random.Next(arr1.Length)];
                     Kierunek(r);
                     ruch = r;
                     return;
                 }
             }
-  
+
         }
         public void Trasa_Cieplna()
         {
@@ -1600,106 +1592,106 @@ namespace Projekt_symulujący_strategie_sprzątania
             {
                 if (Form1.mapa.Plansza[py, px] < 19)
                 {
-                int zm= Form1.mapa.Plansza[py, px];
-                Form1.mapa.Plansza[py, px] = zm+1;
-                Ponowne_przejscia++;
-                return;
+                    int zm = Form1.mapa.Plansza[py, px];
+                    Form1.mapa.Plansza[py, px] = zm + 1;
+                    Ponowne_przejscia++;
+                    return;
 
 
                 }
             }
-       
+
 
         }
 
         public void Map_move()
         {
             Move_choise();
-           // int r = 0;
-           // //Rych w prawo
-           // if (ruch == 1)
-           // {
-           //     if (SprawdzKolejnyRuchCzyPuste(1) == true && SprawdzKolejnyRuchCzyTrasa(1)==false)
-           //     {
-           //         Kierunek(1);
-           //         ruch = 1;
-           //         return;
-           //     }
-           //     //else if (SprawdzKolejnyRuchCzySciana(4) == true)
-           //     //{
-           //     //    var arr1 = new[] { 2, 7 };
-           //     //    r = arr1[random.Next(arr1.Length)];
-           //     //    Kierunek(r);
-           //     //    ruch = r;
-           //     //    return;
+            // int r = 0;
+            // //Rych w prawo
+            // if (ruch == 1)
+            // {
+            //     if (SprawdzKolejnyRuchCzyPuste(1) == true && SprawdzKolejnyRuchCzyTrasa(1)==false)
+            //     {
+            //         Kierunek(1);
+            //         ruch = 1;
+            //         return;
+            //     }
+            //     //else if (SprawdzKolejnyRuchCzySciana(4) == true)
+            //     //{
+            //     //    var arr1 = new[] { 2, 7 };
+            //     //    r = arr1[random.Next(arr1.Length)];
+            //     //    Kierunek(r);
+            //     //    ruch = r;
+            //     //    return;
 
 
-           //     //}
-           //     //else if (SprawdzKolejnyRuchCzySciana(2) == true)
-           //     //{
-           //     //    var arr1 = new[] { 6, 4 };
-           //     //    r = arr1[random.Next(arr1.Length)];
-           //     //    Kierunek(r);
-           //     //    ruch = r;
-           //     //    return;
+            //     //}
+            //     //else if (SprawdzKolejnyRuchCzySciana(2) == true)
+            //     //{
+            //     //    var arr1 = new[] { 6, 4 };
+            //     //    r = arr1[random.Next(arr1.Length)];
+            //     //    Kierunek(r);
+            //     //    ruch = r;
+            //     //    return;
 
 
-           //     //}
-           //     //else if (SprawdzKolejnyRuchCzyPuste(4) == true && SprawdzKolejnyRuchCzyPuste(2) == true && SprawdzKolejnyRuchCzyPuste(6) == true && SprawdzKolejnyRuchCzyPuste(7) == true)
-           //     //{
-           //     //    var arr1 = new[] { 4, 2, 6, 7 };
-           //     //    r = arr1[random.Next(arr1.Length)];
-           //     //    Kierunek(r);
-           //     //    ruch = r;
-           //     //    return;
-           //     //}
+            //     //}
+            //     //else if (SprawdzKolejnyRuchCzyPuste(4) == true && SprawdzKolejnyRuchCzyPuste(2) == true && SprawdzKolejnyRuchCzyPuste(6) == true && SprawdzKolejnyRuchCzyPuste(7) == true)
+            //     //{
+            //     //    var arr1 = new[] { 4, 2, 6, 7 };
+            //     //    r = arr1[random.Next(arr1.Length)];
+            //     //    Kierunek(r);
+            //     //    ruch = r;
+            //     //    return;
+            //     //}
 
 
-           // }
-         
-           ////ruch w dół 
-           // if (ruch == 2)
-           // {
-           //     if (SprawdzKolejnyRuchCzyPuste(2) == true && SprawdzKolejnyRuchCzyTrasa(2) == false)
-           //     {
-           //         Kierunek(2);
-           //         ruch = 2;
-           //         return;
-           //     }
-           // }
-           // //ruch w lewo
-           // if (ruch == 3)
-           // {
-           //     if (SprawdzKolejnyRuchCzyPuste(3) == true && SprawdzKolejnyRuchCzyTrasa(3) == false)
-           //     {
-           //         Kierunek(3);
-           //         ruch = 3;
-           //         return;
-           //     }
-           // }
-           // //rch w góre
-           // if (ruch == 4)
-           // {
-           //     if (SprawdzKolejnyRuchCzyPuste(4) == true && SprawdzKolejnyRuchCzyTrasa(4) == false)
-           //     {
-           //         Kierunek(4);
-           //         ruch = 4;
-           //         return;
-           //     }
-           // }
+            // }
 
-        }    
+            ////ruch w dół 
+            // if (ruch == 2)
+            // {
+            //     if (SprawdzKolejnyRuchCzyPuste(2) == true && SprawdzKolejnyRuchCzyTrasa(2) == false)
+            //     {
+            //         Kierunek(2);
+            //         ruch = 2;
+            //         return;
+            //     }
+            // }
+            // //ruch w lewo
+            // if (ruch == 3)
+            // {
+            //     if (SprawdzKolejnyRuchCzyPuste(3) == true && SprawdzKolejnyRuchCzyTrasa(3) == false)
+            //     {
+            //         Kierunek(3);
+            //         ruch = 3;
+            //         return;
+            //     }
+            // }
+            // //rch w góre
+            // if (ruch == 4)
+            // {
+            //     if (SprawdzKolejnyRuchCzyPuste(4) == true && SprawdzKolejnyRuchCzyTrasa(4) == false)
+            //     {
+            //         Kierunek(4);
+            //         ruch = 4;
+            //         return;
+            //     }
+            // }
+
+        }
         public void rysuj(Graphics g, Brush b)
         {
-            
-           
-            if (q==0)
+
+
+            if (q == 0)
             {
                 for (int ppy = 0; ppy < mapa.Tab; ppy++)
                 {
                     for (int ppx = 0; ppx < mapa.Tab; ppx++)
                     {
-                        if (Form1.mapa.Plansza[ppy, ppx] == 1) 
+                        if (Form1.mapa.Plansza[ppy, ppx] == 1)
                         {
                             x = ppx * segment;
                             y = ppy * segment;
@@ -1715,7 +1707,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                     }
 
                 }
-              
+
             }
 
             q++;
@@ -1729,7 +1721,7 @@ namespace Projekt_symulujący_strategie_sprzątania
 
             segment = szerokosc / mapa.Tab;
 
-               ruch = 1;
+            ruch = 1;
 
 
 
@@ -1738,8 +1730,8 @@ namespace Projekt_symulujący_strategie_sprzątania
     }
 }
 
-       
 
-        
-    
+
+
+
 
