@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace Projekt_symulujący_strategie_sprzątania
 {
@@ -36,6 +37,7 @@ namespace Projekt_symulujący_strategie_sprzątania
         public bool Krok4 = false;
         public int Ponowne_przejscia;
         public int Ruchy;
+        public int obszar = 2;
         public void Kierunek(int kierunek)
         {
             Ruchy++;
@@ -115,6 +117,143 @@ namespace Projekt_symulujący_strategie_sprzątania
 
         }
 
+        public void Najblizszy_Bialy()
+        {
+            int distance;
+            List<NP_List> nP_list = new List<NP_List>();
+            int Dopx = px + obszar;
+            int Dopy = py + obszar;
+            int Uopx = px - obszar;
+            int Uopy = py - obszar;
+
+            //xy
+            if (Dopy >= 0 && Dopy < mapa.Tab)
+            {
+                for (int yy = py ; yy <= Dopy; yy++)
+                {
+
+                    if (Dopx >= 0 && Dopx < mapa.Tab)
+                    {
+                        for (int xx = px ; xx <= Dopx; xx++)
+                        {
+
+
+
+                            if (Form1.mapa.Plansza[yy, xx] == 0)
+                            {
+                                nP_list.Add(new NP_List() { Coord_Y = yy, Coord_X = xx, Distance = Math.Abs(px - xx) + Math.Abs(py - yy) });
+                                
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+
+            //-x-y
+            if (Uopy >= 0 && Uopy < mapa.Tab)
+            {
+                for (int yy = py ; yy >= Uopy; yy--)
+                {
+
+                    if (Uopx >= 0 && Uopx < mapa.Tab)
+                    {
+                        for (int xx = px ; xx >= Uopx; xx--)
+                        {
+
+
+
+                            if (Form1.mapa.Plansza[yy, xx] == 0)
+                            {
+                                nP_list.Add(new NP_List() { Coord_Y = yy, Coord_X = xx, Distance = Math.Abs(px - xx) + Math.Abs(py - yy) });
+                               
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+
+            //x-y
+            if (Uopy >= 0 && Uopy < mapa.Tab)
+            {
+                for (int yy = py; yy >= Uopy; yy--)
+                {
+
+                    if (Uopx >= 0 && Uopx < mapa.Tab)
+                    {
+                        for (int xx = px; xx <= Dopx; xx++)
+                        {
+
+
+
+                            if (Form1.mapa.Plansza[yy, xx] == 0)
+                            {
+                                nP_list.Add(new NP_List() { Coord_Y = yy, Coord_X = xx, Distance = Math.Abs(px - xx) + Math.Abs(py - yy) });
+                               
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+            //-xy
+            if (Uopy >= 0 && Uopy < mapa.Tab)
+            {
+                for (int yy = py; yy <= Dopy; yy++)
+                {
+
+                    if (Uopx >= 0 && Uopx < mapa.Tab)
+                    {
+                        for (int xx = px; xx >= Uopx; xx--)
+                        {
+
+
+
+                            if (Form1.mapa.Plansza[yy, xx] == 0)
+                            {
+                                nP_list.Add(new NP_List() { Coord_Y = yy, Coord_X = xx ,Distance=Math.Abs(px-xx)+Math.Abs(py-yy) });
+                             
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+
+            int count = nP_list.Min(item => item.Distance );
+
+            foreach (NP_List np in nP_list)
+            {
+                for (int i = 0; i <= nP_list.Max(item => item.Distance) ; i++)
+                { 
+                    if (np.Distance==i)
+                        {
+                            if (Form1.mapa.Plansza[np.Coord_Y, np.Coord_X] == 0)
+                            {
+                                //Form1.mapa.Plansza[np.Coord_Y, np.Coord_X] = 18;
+                            }
+
+                        Console.WriteLine(count);
+                        }
+                        
+
+                }
+              
+
+                
+            }
+
+        }
+        
         public void Move_choise()
         {
 
@@ -144,6 +283,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                     {
                         S_list.Add(P);
 
+
                     }
                 }
 
@@ -153,7 +293,7 @@ namespace Projekt_symulujący_strategie_sprzątania
             if (arr1.Length == 0)
             {
                 arr1 = P_list.ToArray();
-
+                Najblizszy_Bialy();
             }
 
 
@@ -1607,78 +1747,6 @@ namespace Projekt_symulujący_strategie_sprzątania
         public void Map_move()
         {
             Move_choise();
-            // int r = 0;
-            // //Rych w prawo
-            // if (ruch == 1)
-            // {
-            //     if (SprawdzKolejnyRuchCzyPuste(1) == true && SprawdzKolejnyRuchCzyTrasa(1)==false)
-            //     {
-            //         Kierunek(1);
-            //         ruch = 1;
-            //         return;
-            //     }
-            //     //else if (SprawdzKolejnyRuchCzySciana(4) == true)
-            //     //{
-            //     //    var arr1 = new[] { 2, 7 };
-            //     //    r = arr1[random.Next(arr1.Length)];
-            //     //    Kierunek(r);
-            //     //    ruch = r;
-            //     //    return;
-
-
-            //     //}
-            //     //else if (SprawdzKolejnyRuchCzySciana(2) == true)
-            //     //{
-            //     //    var arr1 = new[] { 6, 4 };
-            //     //    r = arr1[random.Next(arr1.Length)];
-            //     //    Kierunek(r);
-            //     //    ruch = r;
-            //     //    return;
-
-
-            //     //}
-            //     //else if (SprawdzKolejnyRuchCzyPuste(4) == true && SprawdzKolejnyRuchCzyPuste(2) == true && SprawdzKolejnyRuchCzyPuste(6) == true && SprawdzKolejnyRuchCzyPuste(7) == true)
-            //     //{
-            //     //    var arr1 = new[] { 4, 2, 6, 7 };
-            //     //    r = arr1[random.Next(arr1.Length)];
-            //     //    Kierunek(r);
-            //     //    ruch = r;
-            //     //    return;
-            //     //}
-
-
-            // }
-
-            ////ruch w dół 
-            // if (ruch == 2)
-            // {
-            //     if (SprawdzKolejnyRuchCzyPuste(2) == true && SprawdzKolejnyRuchCzyTrasa(2) == false)
-            //     {
-            //         Kierunek(2);
-            //         ruch = 2;
-            //         return;
-            //     }
-            // }
-            // //ruch w lewo
-            // if (ruch == 3)
-            // {
-            //     if (SprawdzKolejnyRuchCzyPuste(3) == true && SprawdzKolejnyRuchCzyTrasa(3) == false)
-            //     {
-            //         Kierunek(3);
-            //         ruch = 3;
-            //         return;
-            //     }
-            // }
-            // //rch w góre
-            // if (ruch == 4)
-            // {
-            //     if (SprawdzKolejnyRuchCzyPuste(4) == true && SprawdzKolejnyRuchCzyTrasa(4) == false)
-            //     {
-            //         Kierunek(4);
-            //         ruch = 4;
-            //         return;
-            //     }
-            // }
 
         }
         public void rysuj(Graphics g, Brush b)

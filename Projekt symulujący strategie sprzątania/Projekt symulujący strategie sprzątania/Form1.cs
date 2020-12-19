@@ -33,7 +33,7 @@ namespace Projekt_symulujący_strategie_sprzątania
             InitializeComponent();
             czy_aktywna = false;
             timer1.Enabled = true;
-            //timer1.Interval = 1;
+           // timer1.Interval = 1000;
 
         }
         private void Form1_Load_1(object sender, EventArgs e)
@@ -289,6 +289,17 @@ namespace Projekt_symulujący_strategie_sprzątania
 
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            odkurzacz.Najblizszy_Bialy();
+        }
 
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            timer1.Interval = trackBar1.Value;
+            label11.Text = timer1.Interval.ToString();
+        }
+
+       
     }
 }
