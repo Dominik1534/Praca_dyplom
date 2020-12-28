@@ -128,37 +128,124 @@ namespace Projekt_symulujący_strategie_sprzątania
             int P3G = Math.Abs((P0X - 1) - P0X) + Math.Abs(P0Y - P0Y);
             int P4G = Math.Abs(P0X - P0X) + Math.Abs((P0Y - 1) - P0Y);
 
+            int P5G = Math.Abs((P0X + 1) - P0X) + Math.Abs((P0Y - 1) - P0Y);
+            int P6G = Math.Abs((P0X - 1) - P0X) + Math.Abs((P0Y - 1) - P0Y);
+            int P7G = Math.Abs((P0X - 1) - P0X) + Math.Abs((P0Y + 1) - P0Y);
+            int P8G = Math.Abs((P0X + 1) - P0X) + Math.Abs((P0Y + 1) - P0Y);
+
+
+
             int P1H = Math.Abs((P0X + 1) - px) + Math.Abs(P0Y - py);
             int P2H = Math.Abs(P0X - px) + Math.Abs((P0Y + 1) - py);
             int P3H = Math.Abs((P0X - 1) - px) + Math.Abs(P0Y - py);
             int P4H = Math.Abs(P0X - px) + Math.Abs((P0Y - 1) - py);
+
+            int P5H = Math.Abs((P0X + 1) - px) + Math.Abs((P0Y - 1) - py);
+            int P6H = Math.Abs((P0X - 1) - px) + Math.Abs((P0Y - 1) - py);
+            int P7H = Math.Abs((P0X - 1) - px) + Math.Abs((P0Y + 1) - py);
+            int P8H = Math.Abs((P0X + 1) - px) + Math.Abs((P0Y + 1) - py);
 
             int P1F = P1G + P1H;
             int P2F = P2G + P2H;
             int P3F = P3G + P3H;
             int P4F = P4G + P4H;
 
-            n_list.Add(new N_List() { PID = 1, G = Math.Abs((P0X + 1) - P0X) + Math.Abs(P0Y - P0Y), H = Math.Abs((P0X + 1) - px) + Math.Abs(P0Y - py),F= P1G + P1H ,R=3});
-            n_list.Add(new N_List() { PID = 2, G = Math.Abs(P0X - P0X) + Math.Abs((P0Y + 1) - P0Y), H = Math.Abs(P0X - px) + Math.Abs((P0Y + 1) - py), F= P2G + P2H , R =4});
-            n_list.Add(new N_List() { PID = 3, G = Math.Abs((P0X - 1) - P0X) + Math.Abs(P0Y - P0Y), H = Math.Abs((P0X - 1) - px) + Math.Abs(P0Y - py), F = P3G + P3H , R =1});
-            n_list.Add(new N_List() { PID = 4, G = Math.Abs(P0X - P0X) + Math.Abs((P0Y - 1) - P0Y), H = Math.Abs(P0X - px) + Math.Abs((P0Y - 1) - py), F = P4G + P4H , R =2});
+            int P5F = P5G + P5H;
+            int P6F = P6G + P6H;
+            int P7F = P7G + P7H;
+            int P8F = P8G + P8H;
+            if (SprawdzKolejnyRuchCzySciana(3)==false)
+            {
+                n_list.Add(new N_List() { PID = 1, G = Math.Abs((P0X + 1) - P0X) + Math.Abs(P0Y - P0Y), H = Math.Abs((P0X + 1) - px) + Math.Abs(P0Y - py), F = P1G + P1H, R = 3 });
+
+            }
+
+            if (SprawdzKolejnyRuchCzySciana(4) == false)
+            {
+                n_list.Add(new N_List() { PID = 2, G = Math.Abs(P0X - P0X) + Math.Abs((P0Y + 1) - P0Y), H = Math.Abs(P0X - px) + Math.Abs((P0Y + 1) - py), F = P2G + P2H, R = 4 });
+
+
+            }
+
+            if (SprawdzKolejnyRuchCzySciana(1) == false)
+            {
+                n_list.Add(new N_List() { PID = 3, G = Math.Abs((P0X - 1) - P0X) + Math.Abs(P0Y - P0Y), H = Math.Abs((P0X - 1) - px) + Math.Abs(P0Y - py), F = P3G + P3H, R = 1 });
+
+            }
+
+            if (SprawdzKolejnyRuchCzySciana(2) == false)
+            {
+                n_list.Add(new N_List() { PID = 4, G = Math.Abs(P0X - P0X) + Math.Abs((P0Y - 1) - P0Y), H = Math.Abs(P0X - px) + Math.Abs((P0Y - 1) - py), F = P4G + P4H, R = 2 });
+
+            }
+
+            if (SprawdzKolejnyRuchCzySciana(7) == false)
+            {
+                n_list.Add(new N_List() { PID = 5, G = Math.Abs((P0X + 1) - P0X) + Math.Abs((P0Y - 1) - P0Y), H = Math.Abs((P0X + 1) - px) + Math.Abs((P0Y - 1) - py), F = P5G + P5H, R = 7 });
+
+            }
+
+            if (SprawdzKolejnyRuchCzySciana(8) == false)
+            {
+                n_list.Add(new N_List() { PID = 6, G = Math.Abs((P0X - 1) - P0X) + Math.Abs((P0Y - 1) - P0Y), H = Math.Abs((P0X - 1) - px) + Math.Abs((P0Y - 1) - py), F = P6G + P6H, R = 8 });
+
+            }
+
+            if (SprawdzKolejnyRuchCzySciana(5) == false)
+            {
+                n_list.Add(new N_List() { PID = 7, G = Math.Abs((P0X - 1) - P0X) + Math.Abs((P0Y + 1) - P0Y), H = Math.Abs((P0X - 1) - px) + Math.Abs((P0Y + 1) - py), F = P7G + P7H, R = 5 });
+
+            }
+
+            if (SprawdzKolejnyRuchCzySciana(6) == false)
+            {
+                n_list.Add(new N_List() { PID = 8, G = Math.Abs((P0X + 1) - P0X) + Math.Abs((P0Y + 1) - P0Y), H = Math.Abs((P0X + 1) - px) + Math.Abs((P0Y + 1) - py), F = P8G + P8H, R = 6 });
+
+            }
+            //n_list.Add(new N_List() { PID = 1, G = Math.Abs((P0X + 1) - P0X) + Math.Abs(P0Y - P0Y), H = Math.Abs((P0X + 1) - px) + Math.Abs(P0Y - py),F= P1G + P1H ,R=3});
+            //n_list.Add(new N_List() { PID = 2, G = Math.Abs(P0X - P0X) + Math.Abs((P0Y + 1) - P0Y), H = Math.Abs(P0X - px) + Math.Abs((P0Y + 1) - py), F= P2G + P2H , R =4});
+            //n_list.Add(new N_List() { PID = 3, G = Math.Abs((P0X - 1) - P0X) + Math.Abs(P0Y - P0Y), H = Math.Abs((P0X - 1) - px) + Math.Abs(P0Y - py), F = P3G + P3H , R =1});
+            //n_list.Add(new N_List() { PID = 4, G = Math.Abs(P0X - P0X) + Math.Abs((P0Y - 1) - P0Y), H = Math.Abs(P0X - px) + Math.Abs((P0Y - 1) - py), F = P4G + P4H , R =2});
+
+            //n_list.Add(new N_List() { PID = 5, G = Math.Abs((P0X + 1) - P0X) + Math.Abs((P0Y - 1) - P0Y), H = Math.Abs((P0X + 1) - px) + Math.Abs((P0Y - 1) - py), F = P5G + P5H, R = 7 });
+            //n_list.Add(new N_List() { PID = 6, G = Math.Abs((P0X - 1) - P0X) + Math.Abs((P0Y - 1) - P0Y), H = Math.Abs((P0X - 1) - px) + Math.Abs((P0Y - 1) - py), F = P6G + P6H, R = 8 });
+            //n_list.Add(new N_List() { PID = 7, G = Math.Abs((P0X - 1) - P0X) + Math.Abs((P0Y + 1) - P0Y), H = Math.Abs((P0X - 1) - px) + Math.Abs((P0Y + 1) - py), F = P7G + P7H, R = 5 });
+            //n_list.Add(new N_List() { PID = 8, G = Math.Abs((P0X + 1) - P0X) + Math.Abs((P0Y + 1) - P0Y), H = Math.Abs((P0X + 1) - px) + Math.Abs((P0Y + 1) - py), F = P8G + P8H, R = 6 });
+
 
 
             n_list = n_list.OrderBy(x => x.F)
            .ToList();
             int i = 0;
-           // Console.WriteLine(n_list[i].R);
-            if (SprawdzKolejnyRuchCzySciana(n_list[i].R)==false)
+            // Console.WriteLine(n_list[i].R);
+            //if (SprawdzKolejnyRuchCzySciana(n_list[i].R)==false)
+            //{
+            if (n_list[i].F== n_list[i+1].F)
             {
+                if (n_list[i].R< n_list[i+1].R)
+                { 
+                    Kierunek(n_list[i].R);
+                    ruch = n_list[i].R;
 
-            Kierunek(n_list[i].R);
-            ruch = n_list[i].R;
-            }
-            else
-            {
-                i++;
-                Ścieżka(P0Y, P0X);
-            }
+                }
+                else
+                {
+                    Kierunek(n_list[i+1].R);
+                    ruch = n_list[i+1].R;
+                }
+                
+            }else
+                {
+                    Kierunek(n_list[i].R);
+                    ruch = n_list[i].R;
+                }
+           
+            //}
+            //else
+            //{
+            //    i++;
+            //    Ścieżka(P0Y, P0X);
+            //}
 
         }
         public void Najblizszy_Bialy()
@@ -173,12 +260,12 @@ namespace Projekt_symulujący_strategie_sprzątania
             //xy
             if (Dopy >= 0 && Dopy < mapa.Tab)
             {
-                for (int yy = py ; yy < Dopy; yy++)
+                for (int yy = py ; yy <= Dopy; yy++)
                 {
 
                     if (Dopx >= 0 && Dopx < mapa.Tab)
                     {
-                        for (int xx = px ; xx < Dopx; xx++)
+                        for (int xx = px ; xx <= Dopx; xx++)
                         {
 
 
@@ -199,12 +286,12 @@ namespace Projekt_symulujący_strategie_sprzątania
             //-x-y
             if (Uopy >= 0 && Uopy < mapa.Tab)
             {
-                for (int yy = py ; yy > Uopy; yy--)
+                for (int yy = py ; yy >= Uopy; yy--)
                 {
 
                     if (Uopx >= 0 && Uopx < mapa.Tab)
                     {
-                        for (int xx = px ; xx > Uopx; xx--)
+                        for (int xx = px ; xx >= Uopx; xx--)
                         {
 
 
@@ -225,12 +312,12 @@ namespace Projekt_symulujący_strategie_sprzątania
             //x-y
             if (Uopy >= 0 && Uopy < mapa.Tab)
             {
-                for (int yy = py; yy > Uopy; yy--)
+                for (int yy = py; yy >=Uopy; yy--)
                 {
 
                     if (Dopx >= 0 && Dopx < mapa.Tab)
                     {
-                        for (int xx = px; xx < Dopx; xx++)
+                        for (int xx = px; xx <= Dopx; xx++)
                         {
 
 
@@ -250,10 +337,10 @@ namespace Projekt_symulujący_strategie_sprzątania
             //-xy
             if (Dopy >= 0 && Dopy < mapa.Tab)
             {
-                for (int yy = py; yy < Dopy; yy++)
+                for (int yy = py; yy <= Dopy; yy++)
                 {
 
-                    if (Uopx >= 0 && Uopx < mapa.Tab)
+                    if (Uopx >= 0 && Uopx <= mapa.Tab)
                     {
                         for (int xx = px; xx > Uopx; xx--)
                         {
