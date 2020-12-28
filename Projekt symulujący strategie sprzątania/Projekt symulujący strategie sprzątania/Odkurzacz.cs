@@ -117,9 +117,53 @@ namespace Projekt_symulujący_strategie_sprzątania
 
         }
 
+        public void Ścieżka(int PY, int PX)
+        {
+            List<N_List> n_list = new List<N_List>();
+            int P0Y=PY;
+            int P0X=PX;
+
+            int P1G = Math.Abs((P0X+1) - P0X) + Math.Abs(P0Y - P0Y);
+            int P2G = Math.Abs(P0X - P0X) + Math.Abs((P0Y + 1) - P0Y);
+            int P3G = Math.Abs((P0X - 1) - P0X) + Math.Abs(P0Y - P0Y);
+            int P4G = Math.Abs(P0X - P0X) + Math.Abs((P0Y - 1) - P0Y);
+
+            int P1H = Math.Abs((P0X + 1) - px) + Math.Abs(P0Y - py);
+            int P2H = Math.Abs(P0X - px) + Math.Abs((P0Y + 1) - py);
+            int P3H = Math.Abs((P0X - 1) - px) + Math.Abs(P0Y - py);
+            int P4H = Math.Abs(P0X - px) + Math.Abs((P0Y - 1) - py);
+
+            int P1F = P1G + P1H;
+            int P2F = P2G + P2H;
+            int P3F = P3G + P3H;
+            int P4F = P4G + P4H;
+
+            n_list.Add(new N_List() { PID = 1, G = Math.Abs((P0X + 1) - P0X) + Math.Abs(P0Y - P0Y), H = Math.Abs((P0X + 1) - px) + Math.Abs(P0Y - py),F= P1G + P1H ,R=3});
+            n_list.Add(new N_List() { PID = 2, G = Math.Abs(P0X - P0X) + Math.Abs((P0Y + 1) - P0Y), H = Math.Abs(P0X - px) + Math.Abs((P0Y + 1) - py), F= P2G + P2H , R =4});
+            n_list.Add(new N_List() { PID = 3, G = Math.Abs((P0X - 1) - P0X) + Math.Abs(P0Y - P0Y), H = Math.Abs((P0X - 1) - px) + Math.Abs(P0Y - py), F = P3G + P3H , R =1});
+            n_list.Add(new N_List() { PID = 4, G = Math.Abs(P0X - P0X) + Math.Abs((P0Y - 1) - P0Y), H = Math.Abs(P0X - px) + Math.Abs((P0Y - 1) - py), F = P4G + P4H , R =2});
+
+
+            n_list = n_list.OrderBy(x => x.F)
+           .ToList();
+            int i = 0;
+           // Console.WriteLine(n_list[i].R);
+            if (SprawdzKolejnyRuchCzySciana(n_list[i].R)==false)
+            {
+
+            Kierunek(n_list[i].R);
+            ruch = n_list[i].R;
+            }
+            else
+            {
+                i++;
+                Ścieżka(P0Y, P0X);
+            }
+
+        }
         public void Najblizszy_Bialy()
         {
-            int distance;
+           
             List<NP_List> nP_list = new List<NP_List>();
             int Dopx = px + obszar;
             int Dopy = py + obszar;
@@ -129,12 +173,12 @@ namespace Projekt_symulujący_strategie_sprzątania
             //xy
             if (Dopy >= 0 && Dopy < mapa.Tab)
             {
-                for (int yy = py ; yy <= Dopy; yy++)
+                for (int yy = py ; yy < Dopy; yy++)
                 {
 
                     if (Dopx >= 0 && Dopx < mapa.Tab)
                     {
-                        for (int xx = px ; xx <= Dopx; xx++)
+                        for (int xx = px ; xx < Dopx; xx++)
                         {
 
 
@@ -155,12 +199,12 @@ namespace Projekt_symulujący_strategie_sprzątania
             //-x-y
             if (Uopy >= 0 && Uopy < mapa.Tab)
             {
-                for (int yy = py ; yy >= Uopy; yy--)
+                for (int yy = py ; yy > Uopy; yy--)
                 {
 
                     if (Uopx >= 0 && Uopx < mapa.Tab)
                     {
-                        for (int xx = px ; xx >= Uopx; xx--)
+                        for (int xx = px ; xx > Uopx; xx--)
                         {
 
 
@@ -181,12 +225,12 @@ namespace Projekt_symulujący_strategie_sprzątania
             //x-y
             if (Uopy >= 0 && Uopy < mapa.Tab)
             {
-                for (int yy = py; yy >= Uopy; yy--)
+                for (int yy = py; yy > Uopy; yy--)
                 {
 
-                    if (Uopx >= 0 && Uopx < mapa.Tab)
+                    if (Dopx >= 0 && Dopx < mapa.Tab)
                     {
-                        for (int xx = px; xx <= Dopx; xx++)
+                        for (int xx = px; xx < Dopx; xx++)
                         {
 
 
@@ -204,14 +248,14 @@ namespace Projekt_symulujący_strategie_sprzątania
                 }
             }
             //-xy
-            if (Uopy >= 0 && Uopy < mapa.Tab)
+            if (Dopy >= 0 && Dopy < mapa.Tab)
             {
-                for (int yy = py; yy <= Dopy; yy++)
+                for (int yy = py; yy < Dopy; yy++)
                 {
 
                     if (Uopx >= 0 && Uopx < mapa.Tab)
                     {
-                        for (int xx = px; xx >= Uopx; xx--)
+                        for (int xx = px; xx > Uopx; xx--)
                         {
 
 
@@ -228,28 +272,39 @@ namespace Projekt_symulujący_strategie_sprzątania
 
                 }
             }
-
-            int count = nP_list.Min(item => item.Distance );
-
-            foreach (NP_List np in nP_list)
+            if (nP_list.Count != 0)
             {
-                for (int i = 0; i <= nP_list.Max(item => item.Distance) ; i++)
-                { 
-                    if (np.Distance==i)
-                        {
-                            if (Form1.mapa.Plansza[np.Coord_Y, np.Coord_X] == 0)
-                            {
-                                //Form1.mapa.Plansza[np.Coord_Y, np.Coord_X] = 18;
-                            }
 
-                        Console.WriteLine(count);
-                        }
-                        
+                //int count = nP_list.Min(item => item.Distance );
+                nP_list = nP_list.OrderBy(x => x.Distance)
+                .ToList();
+                Ścieżka(nP_list[0].Coord_Y, nP_list[0].Coord_X);
+                //foreach (NP_List np in nP_list)
+                //{
+                //    for (int i = 0; i <= nP_list.Max(item => item.Distance); i++)
+                //    {
+                //        if (np.Distance == i)
+                //        {
+                //            if (Form1.mapa.Plansza[np.Coord_Y, np.Coord_X] == 0)
+                //            {
+                //                Ścieżka(np.Coord_Y, np.Coord_X);
+                //                //Form1.mapa.Plansza[np.Coord_Y, np.Coord_X] = 18;
+                //            }
 
-                }
-              
+                //            //  Console.WriteLine(count);
+                //        }
 
-                
+
+                //    }
+
+
+
+                //}
+            }
+            else
+            {
+                obszar++;
+                Najblizszy_Bialy();
             }
 
         }
@@ -295,12 +350,16 @@ namespace Projekt_symulujący_strategie_sprzątania
                 arr1 = P_list.ToArray();
                 Najblizszy_Bialy();
             }
-
+            else
+            {
 
             r = arr1[random.Next(arr1.Length)];
 
             Kierunek(r);
             ruch = r;
+            }
+
+
 
 
 
@@ -1746,8 +1805,8 @@ namespace Projekt_symulujący_strategie_sprzątania
 
         public void Map_move()
         {
-            Move_choise();
-
+            // Move_choise();
+            Najblizszy_Bialy();
         }
         public void rysuj(Graphics g, Brush b)
         {

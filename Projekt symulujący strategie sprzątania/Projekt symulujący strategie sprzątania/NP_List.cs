@@ -13,4 +13,15 @@ namespace Projekt_symulujący_strategie_sprzątania
         public int Distance { get; set; }
 
     }
+
+    public class N_List
+    {
+        public int PID { get; set; }
+        public int G { get; set; }
+        public int H { get; set; }
+        public int F { get; set; }
+
+        public int R { get; set; }
+    }
+
 }
