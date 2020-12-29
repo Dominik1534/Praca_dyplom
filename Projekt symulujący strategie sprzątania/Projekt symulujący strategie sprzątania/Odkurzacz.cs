@@ -120,10 +120,10 @@ namespace Projekt_symulujący_strategie_sprzątania
         public void Ścieżka(int PY, int PX)
         {
             List<N_List> n_list = new List<N_List>();
-            int P0Y=PY;
-            int P0X=PX;
+            int P0Y = PY;
+            int P0X = PX;
 
-            int P1G = Math.Abs((P0X+1) - P0X) + Math.Abs(P0Y - P0Y);
+            int P1G = Math.Abs((P0X + 1) - P0X) + Math.Abs(P0Y - P0Y);
             int P2G = Math.Abs(P0X - P0X) + Math.Abs((P0Y + 1) - P0Y);
             int P3G = Math.Abs((P0X - 1) - P0X) + Math.Abs(P0Y - P0Y);
             int P4G = Math.Abs(P0X - P0X) + Math.Abs((P0Y - 1) - P0Y);
@@ -154,7 +154,7 @@ namespace Projekt_symulujący_strategie_sprzątania
             int P6F = P6G + P6H;
             int P7F = P7G + P7H;
             int P8F = P8G + P8H;
-            if (SprawdzKolejnyRuchCzySciana(3)==false)
+            if (SprawdzKolejnyRuchCzySciana(3) == false)
             {
                 n_list.Add(new N_List() { PID = 1, G = Math.Abs((P0X + 1) - P0X) + Math.Abs(P0Y - P0Y), H = Math.Abs((P0X + 1) - px) + Math.Abs(P0Y - py), F = P1G + P1H, R = 3 });
 
@@ -217,40 +217,34 @@ namespace Projekt_symulujący_strategie_sprzątania
             n_list = n_list.OrderBy(x => x.F)
            .ToList();
             int i = 0;
-            // Console.WriteLine(n_list[i].R);
-            //if (SprawdzKolejnyRuchCzySciana(n_list[i].R)==false)
-            //{
-            if (n_list[i].F== n_list[i+1].F)
+         
+            if (n_list[i].F == n_list[i + 1].F)
             {
-                if (n_list[i].R< n_list[i+1].R)
-                { 
+                if (n_list[i].R < n_list[i + 1].R)
+                {
                     Kierunek(n_list[i].R);
                     ruch = n_list[i].R;
 
                 }
                 else
                 {
-                    Kierunek(n_list[i+1].R);
-                    ruch = n_list[i+1].R;
+                    Kierunek(n_list[i + 1].R);
+                    ruch = n_list[i + 1].R;
                 }
-                
-            }else
-                {
-                    Kierunek(n_list[i].R);
-                    ruch = n_list[i].R;
-                }
+
+            }
+            else
+            {
+                Kierunek(n_list[i].R);
+                ruch = n_list[i].R;
+            }
+
            
-            //}
-            //else
-            //{
-            //    i++;
-            //    Ścieżka(P0Y, P0X);
-            //}
 
         }
         public void Najblizszy_Bialy()
         {
-           
+
             List<NP_List> nP_list = new List<NP_List>();
             int Dopx = px + obszar;
             int Dopy = py + obszar;
@@ -260,59 +254,7 @@ namespace Projekt_symulujący_strategie_sprzątania
             //xy
             if (Dopy >= 0 && Dopy < mapa.Tab)
             {
-                for (int yy = py ; yy <= Dopy; yy++)
-                {
-
-                    if (Dopx >= 0 && Dopx < mapa.Tab)
-                    {
-                        for (int xx = px ; xx <= Dopx; xx++)
-                        {
-
-
-
-                            if (Form1.mapa.Plansza[yy, xx] == 0)
-                            {
-                                nP_list.Add(new NP_List() { Coord_Y = yy, Coord_X = xx, Distance = Math.Abs(px - xx) + Math.Abs(py - yy) });
-                                
-                            }
-
-                        }
-
-                    }
-
-                }
-            }
-
-            //-x-y
-            if (Uopy >= 0 && Uopy < mapa.Tab)
-            {
-                for (int yy = py ; yy >= Uopy; yy--)
-                {
-
-                    if (Uopx >= 0 && Uopx < mapa.Tab)
-                    {
-                        for (int xx = px ; xx >= Uopx; xx--)
-                        {
-
-
-
-                            if (Form1.mapa.Plansza[yy, xx] == 0)
-                            {
-                                nP_list.Add(new NP_List() { Coord_Y = yy, Coord_X = xx, Distance = Math.Abs(px - xx) + Math.Abs(py - yy) });
-                               
-                            }
-
-                        }
-
-                    }
-
-                }
-            }
-
-            //x-y
-            if (Uopy >= 0 && Uopy < mapa.Tab)
-            {
-                for (int yy = py; yy >=Uopy; yy--)
+                for (int yy = py; yy <= Dopy; yy++)
                 {
 
                     if (Dopx >= 0 && Dopx < mapa.Tab)
@@ -325,7 +267,59 @@ namespace Projekt_symulujący_strategie_sprzątania
                             if (Form1.mapa.Plansza[yy, xx] == 0)
                             {
                                 nP_list.Add(new NP_List() { Coord_Y = yy, Coord_X = xx, Distance = Math.Abs(px - xx) + Math.Abs(py - yy) });
-                               
+
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+
+            //-x-y
+            if (Uopy >= 0 && Uopy < mapa.Tab)
+            {
+                for (int yy = py; yy >= Uopy; yy--)
+                {
+
+                    if (Uopx >= 0 && Uopx < mapa.Tab)
+                    {
+                        for (int xx = px; xx >= Uopx; xx--)
+                        {
+
+
+
+                            if (Form1.mapa.Plansza[yy, xx] == 0)
+                            {
+                                nP_list.Add(new NP_List() { Coord_Y = yy, Coord_X = xx, Distance = Math.Abs(px - xx) + Math.Abs(py - yy) });
+
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+
+            //x-y
+            if (Uopy >= 0 && Uopy < mapa.Tab)
+            {
+                for (int yy = py; yy >= Uopy; yy--)
+                {
+
+                    if (Dopx >= 0 && Dopx < mapa.Tab)
+                    {
+                        for (int xx = px; xx <= Dopx; xx++)
+                        {
+
+
+
+                            if (Form1.mapa.Plansza[yy, xx] == 0)
+                            {
+                                nP_list.Add(new NP_List() { Coord_Y = yy, Coord_X = xx, Distance = Math.Abs(px - xx) + Math.Abs(py - yy) });
+
                             }
 
                         }
@@ -349,8 +343,8 @@ namespace Projekt_symulujący_strategie_sprzątania
 
                             if (Form1.mapa.Plansza[yy, xx] == 0)
                             {
-                                nP_list.Add(new NP_List() { Coord_Y = yy, Coord_X = xx ,Distance=Math.Abs(px-xx)+Math.Abs(py-yy) });
-                             
+                                nP_list.Add(new NP_List() { Coord_Y = yy, Coord_X = xx, Distance = Math.Abs(px - xx) + Math.Abs(py - yy) });
+
                             }
 
                         }
@@ -395,7 +389,7 @@ namespace Projekt_symulujący_strategie_sprzątania
             }
 
         }
-        
+
         public void Move_choise()
         {
 
@@ -403,7 +397,7 @@ namespace Projekt_symulujący_strategie_sprzątania
             List<int> T_list = new List<int>();
             List<int> P_list = new List<int>();
             List<int> S_list = new List<int>();
-            for (int i = 0; i < 9; i++)
+            for (int i = 1; i <= 8; i++)
             {
                 if (SprawdzKolejnyRuchCzyPuste(i))
                 {
@@ -434,17 +428,18 @@ namespace Projekt_symulujący_strategie_sprzątania
             var arr1 = S_list.ToArray();
             if (arr1.Length == 0)
             {
-                arr1 = P_list.ToArray();
+                
                 Najblizszy_Bialy();
             }
             else
             {
 
-            r = arr1[random.Next(arr1.Length)];
+                r = arr1[random.Next(arr1.Length)];
 
-            Kierunek(r);
-            ruch = r;
+                Kierunek(r);
+                ruch = r;
             }
+
 
 
 
@@ -454,14 +449,14 @@ namespace Projekt_symulujący_strategie_sprzątania
         public bool SprawdzKolejnyRuchCzyTrasa(int ruch)
         {
             if (ruch == 1 && Form1.mapa.Plansza[py, px + 1] >= 10 && Form1.mapa.Plansza[py, px + 1] < 99 && Form1.mapa.Plansza[py, px + 1] != 1) { return true; }
-            if (ruch == 2 && Form1.mapa.Plansza[py + 1, px] >= 10 && Form1.mapa.Plansza[py, px + 1] < 99 && Form1.mapa.Plansza[py, px + 1] != 1) { return true; }
-            if (ruch == 3 && Form1.mapa.Plansza[py, px - 1] >= 10 && Form1.mapa.Plansza[py, px + 1] < 99 && Form1.mapa.Plansza[py, px + 1] != 1) { return true; }
-            if (ruch == 4 && Form1.mapa.Plansza[py - 1, px] >= 10 && Form1.mapa.Plansza[py, px + 1] < 99 && Form1.mapa.Plansza[py, px + 1] != 1) { return true; }
+            if (ruch == 2 && Form1.mapa.Plansza[py + 1, px] >= 10 && Form1.mapa.Plansza[py + 1, px] < 99 && Form1.mapa.Plansza[py + 1, px] != 1) { return true; }
+            if (ruch == 3 && Form1.mapa.Plansza[py, px - 1] >= 10 && Form1.mapa.Plansza[py, px - 1] < 99 && Form1.mapa.Plansza[py, px - 1] != 1) { return true; }
+            if (ruch == 4 && Form1.mapa.Plansza[py - 1, px] >= 10 && Form1.mapa.Plansza[py - 1, px] < 99 && Form1.mapa.Plansza[py - 1, px] != 1) { return true; }
 
-            if (ruch == 5 && Form1.mapa.Plansza[py - 1, px + 1] >= 10 && Form1.mapa.Plansza[py, px + 1] < 99 && Form1.mapa.Plansza[py, px + 1] != 1) { return true; }
-            if (ruch == 6 && Form1.mapa.Plansza[py - 1, px - 1] >= 10 && Form1.mapa.Plansza[py, px + 1] < 99 && Form1.mapa.Plansza[py, px + 1] != 1) { return true; }
-            if (ruch == 7 && Form1.mapa.Plansza[py + 1, px - 1] >= 10 && Form1.mapa.Plansza[py, px + 1] < 99 && Form1.mapa.Plansza[py, px + 1] != 1) { return true; }
-            if (ruch == 8 && Form1.mapa.Plansza[py + 1, px + 1] >= 10 && Form1.mapa.Plansza[py, px + 1] < 99 && Form1.mapa.Plansza[py, px + 1] != 1) { return true; }
+            if (ruch == 5 && Form1.mapa.Plansza[py - 1, px + 1] >= 10 && Form1.mapa.Plansza[py - 1, px + 1] < 99 && Form1.mapa.Plansza[py - 1, px + 1] != 1) { return true; }
+            if (ruch == 6 && Form1.mapa.Plansza[py - 1, px - 1] >= 10 && Form1.mapa.Plansza[py - 1, px - 1] < 99 && Form1.mapa.Plansza[py - 1, px - 1] != 1) { return true; }
+            if (ruch == 7 && Form1.mapa.Plansza[py + 1, px - 1] >= 10 && Form1.mapa.Plansza[py + 1, px - 1] < 99 && Form1.mapa.Plansza[py + 1, px - 1] != 1) { return true; }
+            if (ruch == 8 && Form1.mapa.Plansza[py + 1, px + 1] >= 10 && Form1.mapa.Plansza[py + 1, px + 1] < 99 && Form1.mapa.Plansza[py + 1, px + 1] != 1) { return true; }
             return false;
         }
         public bool SprawdzKolejnyRuchCzySciana(int ruch)
@@ -1892,8 +1887,173 @@ namespace Projekt_symulujący_strategie_sprzątania
 
         public void Map_move()
         {
-            // Move_choise();
-            Najblizszy_Bialy();
+            
+            int r = 0;
+            List<int> T_list = new List<int>();
+            List<int> P_list = new List<int>();
+            List<int> S_list = new List<int>();
+            for (int i = 1; i <= 8; i++)
+            {
+                if (SprawdzKolejnyRuchCzyPuste(i) == true && SprawdzKolejnyRuchCzySciana(i) == false && SprawdzKolejnyRuchCzyTrasa(i) == false)
+                {
+                    P_list.Add(i);
+                }
+                if (SprawdzKolejnyRuchCzyPuste(i))
+                {
+                    T_list.Add(i);
+                }
+
+
+
+            }
+            foreach (int T in T_list)
+            {
+                foreach (int P in P_list)
+                {
+                    if (P == T)
+                    {
+                        S_list.Add(T);
+
+
+                    }
+                }
+
+            }
+
+            var arr1 = P_list.ToArray();
+            if (arr1.Length == 0)
+            {
+                arr1 = T_list.ToArray();
+                //Najblizszy_Bialy();
+                r = random.Next(arr1.Length);
+                Kierunek(arr1[r]);
+                ruch = r;
+            }
+            else
+            {
+                Array.Sort(arr1);
+                //int i = 0;
+
+                //r = random.Next(arr1.Length);
+
+                for (int i = 0; i < arr1.Length; i++)
+                {
+
+                    if (arr1[i] == 1)
+                    {
+                        r = arr1[i];
+                        break;
+
+
+                    }
+                    else
+                    {
+                        if (arr1[i] == 2)
+                        {
+                            r = arr1[i];
+                            break;
+
+
+                        }
+                        else
+                        {
+                            if (arr1[i] == 3)
+                            {
+                                r = arr1[i];
+                                break;
+
+
+                            }
+                            else
+                            {
+                                if (arr1[i] == 4)
+                                {
+                                    r = arr1[i];
+                                    break;
+
+                                }
+                                else
+                                {
+                                    if (arr1[i] == 5)
+                                    {
+                                        r = arr1[i];
+                                        break;
+
+
+                                    }
+                                    else
+                                    {
+                                        if (arr1[i] == 6)
+                                        {
+                                            r = arr1[i];
+                                            break;
+
+
+                                        }
+                                        else
+                                        {
+                                            if (arr1[i] == 7)
+                                            {
+                                                r = arr1[i];
+                                                break;
+
+
+                                            }
+                                            else
+                                            {
+                                                if (arr1[i] == 8)
+                                                {
+                                                    r = arr1[i];
+                                                    break;
+
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Kierunek(r);
+                ruch = r;
+                //if (arr1.Length > 1)
+                //{
+                //    Kierunek(arr1[i]);
+                //    ruch = arr1[i];
+
+
+                //    //if (arr1[i] < arr1[i + 1])
+                //    //    {
+                //    //        Kierunek(arr1[i]);
+                //    //        ruch = arr1[i];
+
+                //    //    }
+                //    //    else
+                //    //    {
+                //    //        Kierunek(arr1[i + 1]);
+                //    //        ruch = arr1[i + 1];
+                //    //    }
+
+
+
+                //}
+                //else
+                //{
+                //    Kierunek(arr1[i]);
+                //    ruch = arr1[i];
+                //}
+
+            }
+
+
+
+
+
+
+
         }
         public void rysuj(Graphics g, Brush b)
         {

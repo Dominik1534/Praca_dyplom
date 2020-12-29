@@ -60,10 +60,11 @@
             this.Wyjscie = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.aToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.losowyZAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
@@ -148,7 +149,9 @@
             this.losowyToolStripMenuItem,
             this.smoveToolStripMenuItem,
             this.wzdłóżŚcianToolStripMenuItem,
-            this.zMapaToolStripMenuItem});
+            this.zMapaToolStripMenuItem,
+            this.aToolStripMenuItem,
+            this.losowyZAToolStripMenuItem});
             this.wybórAlgorytmuToolStripMenuItem.Name = "wybórAlgorytmuToolStripMenuItem";
             this.wybórAlgorytmuToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
             this.wybórAlgorytmuToolStripMenuItem.Text = "Wybór algorytmu";
@@ -156,28 +159,28 @@
             // losowyToolStripMenuItem
             // 
             this.losowyToolStripMenuItem.Name = "losowyToolStripMenuItem";
-            this.losowyToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.losowyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.losowyToolStripMenuItem.Text = "Losowy";
             this.losowyToolStripMenuItem.Click += new System.EventHandler(this.losowyToolStripMenuItem_Click);
             // 
             // smoveToolStripMenuItem
             // 
             this.smoveToolStripMenuItem.Name = "smoveToolStripMenuItem";
-            this.smoveToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.smoveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.smoveToolStripMenuItem.Text = "S-move";
             this.smoveToolStripMenuItem.Click += new System.EventHandler(this.smoveToolStripMenuItem_Click);
             // 
             // wzdłóżŚcianToolStripMenuItem
             // 
             this.wzdłóżŚcianToolStripMenuItem.Name = "wzdłóżŚcianToolStripMenuItem";
-            this.wzdłóżŚcianToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.wzdłóżŚcianToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.wzdłóżŚcianToolStripMenuItem.Text = "Wzdłuż ścian";
             this.wzdłóżŚcianToolStripMenuItem.Click += new System.EventHandler(this.wzdłóżŚcianToolStripMenuItem_Click);
             // 
             // zMapaToolStripMenuItem
             // 
             this.zMapaToolStripMenuItem.Name = "zMapaToolStripMenuItem";
-            this.zMapaToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.zMapaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.zMapaToolStripMenuItem.Text = "Z mapa";
             this.zMapaToolStripMenuItem.Click += new System.EventHandler(this.zMapaToolStripMenuItem_Click);
             // 
@@ -320,16 +323,6 @@
             this.label9.TabIndex = 17;
             this.label9.Text = "-";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(338, 324);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // trackBar1
             // 
             this.trackBar1.Location = new System.Drawing.Point(341, 211);
@@ -357,7 +350,20 @@
             this.label11.Size = new System.Drawing.Size(13, 13);
             this.label11.TabIndex = 21;
             this.label11.Text = "0";
-     
+            // 
+            // aToolStripMenuItem
+            // 
+            this.aToolStripMenuItem.Name = "aToolStripMenuItem";
+            this.aToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aToolStripMenuItem.Text = "A*";
+            this.aToolStripMenuItem.Click += new System.EventHandler(this.aToolStripMenuItem_Click);
+            // 
+            // losowyZAToolStripMenuItem
+            // 
+            this.losowyZAToolStripMenuItem.Name = "losowyZAToolStripMenuItem";
+            this.losowyZAToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.losowyZAToolStripMenuItem.Text = "Losowy z A*";
+            this.losowyZAToolStripMenuItem.Click += new System.EventHandler(this.losowyZAToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -367,7 +373,6 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.trackBar1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.Wyjscie);
@@ -432,10 +437,11 @@
         private System.Windows.Forms.ToolStripMenuItem zMapaToolStripMenuItem;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ToolStripMenuItem aToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem losowyZAToolStripMenuItem;
     }
 }
 

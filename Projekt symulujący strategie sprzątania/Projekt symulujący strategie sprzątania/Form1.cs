@@ -80,8 +80,14 @@ namespace Projekt_symulujący_strategie_sprzątania
                     case 4:
                         odkurzacz.Map_move();
                         break;
+                    case 5:
+                        odkurzacz.Najblizszy_Bialy();
+                        break;
+                    case 6:
+                        odkurzacz.Move_choise();
+                        break;
                     default:
-                        odkurzacz.Map_move();
+                        odkurzacz.Random_move2();
                         break;
 
                 }
@@ -144,6 +150,12 @@ namespace Projekt_symulujący_strategie_sprzątania
                 case 4:
                     label7.Text = "Z mapą";
                     break;
+                case 5:
+                    label7.Text = "A Star";
+                    break;
+                case 6:
+                    label7.Text = "Losowy z A Star";
+                    break;
                 default:
                     label7.Text = "Losowych odbić";
                     break;
@@ -180,7 +192,7 @@ namespace Projekt_symulujący_strategie_sprzątania
             czy_aktywna = true;
             odkurzacz = new Odkurzacz(panel1.Width, panel1.Height);
             Odswierz();
-
+            startToolStripMenuItem.Enabled = false;
 
         }
         private void pauzaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -214,6 +226,8 @@ namespace Projekt_symulujący_strategie_sprzątania
         private void restartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RestartMapy();
+            wybórAlgorytmuToolStripMenuItem.Enabled = true;
+
 
         }
 
@@ -253,26 +267,43 @@ namespace Projekt_symulujący_strategie_sprzątania
         private void losowyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NrAlgorytmu = 1;
+            wybórAlgorytmuToolStripMenuItem.Enabled = false;
+
         }
 
         private void smoveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NrAlgorytmu = 2;
+            wybórAlgorytmuToolStripMenuItem.Enabled = false;
 
         }
 
         private void wzdłóżŚcianToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NrAlgorytmu = 3;
+            wybórAlgorytmuToolStripMenuItem.Enabled = false;
 
         }
+
 
         private void zMapaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NrAlgorytmu = 4;
+            wybórAlgorytmuToolStripMenuItem.Enabled = false;
 
 
 
+        }
+        private void aToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NrAlgorytmu = 5;
+            wybórAlgorytmuToolStripMenuItem.Enabled = false;
+
+        } 
+        private void losowyZAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NrAlgorytmu = 6;
+            wybórAlgorytmuToolStripMenuItem.Enabled = false;
         }
         private void Wyjscie_Click(object sender, EventArgs e)
         {
@@ -300,6 +331,6 @@ namespace Projekt_symulujący_strategie_sprzątania
             label11.Text = timer1.Interval.ToString();
         }
 
-       
+     
     }
 }
