@@ -43,6 +43,8 @@
             this.smoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wzdłóżŚcianToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.losowyZAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.CzystePola = new System.Windows.Forms.Label();
@@ -63,8 +65,6 @@
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.aToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.losowyZAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
@@ -159,30 +159,44 @@
             // losowyToolStripMenuItem
             // 
             this.losowyToolStripMenuItem.Name = "losowyToolStripMenuItem";
-            this.losowyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.losowyToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.losowyToolStripMenuItem.Text = "Losowy";
             this.losowyToolStripMenuItem.Click += new System.EventHandler(this.losowyToolStripMenuItem_Click);
             // 
             // smoveToolStripMenuItem
             // 
             this.smoveToolStripMenuItem.Name = "smoveToolStripMenuItem";
-            this.smoveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.smoveToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.smoveToolStripMenuItem.Text = "S-move";
             this.smoveToolStripMenuItem.Click += new System.EventHandler(this.smoveToolStripMenuItem_Click);
             // 
             // wzdłóżŚcianToolStripMenuItem
             // 
             this.wzdłóżŚcianToolStripMenuItem.Name = "wzdłóżŚcianToolStripMenuItem";
-            this.wzdłóżŚcianToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.wzdłóżŚcianToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.wzdłóżŚcianToolStripMenuItem.Text = "Wzdłuż ścian";
             this.wzdłóżŚcianToolStripMenuItem.Click += new System.EventHandler(this.wzdłóżŚcianToolStripMenuItem_Click);
             // 
             // zMapaToolStripMenuItem
             // 
             this.zMapaToolStripMenuItem.Name = "zMapaToolStripMenuItem";
-            this.zMapaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.zMapaToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.zMapaToolStripMenuItem.Text = "Z mapa";
             this.zMapaToolStripMenuItem.Click += new System.EventHandler(this.zMapaToolStripMenuItem_Click);
+            // 
+            // aToolStripMenuItem
+            // 
+            this.aToolStripMenuItem.Name = "aToolStripMenuItem";
+            this.aToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.aToolStripMenuItem.Text = "A*";
+            this.aToolStripMenuItem.Click += new System.EventHandler(this.aToolStripMenuItem_Click);
+            // 
+            // losowyZAToolStripMenuItem
+            // 
+            this.losowyZAToolStripMenuItem.Name = "losowyZAToolStripMenuItem";
+            this.losowyZAToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.losowyZAToolStripMenuItem.Text = "Losowy z A*";
+            this.losowyZAToolStripMenuItem.Click += new System.EventHandler(this.losowyZAToolStripMenuItem_Click);
             // 
             // timer1
             // 
@@ -350,20 +364,6 @@
             this.label11.Size = new System.Drawing.Size(13, 13);
             this.label11.TabIndex = 21;
             this.label11.Text = "0";
-            // 
-            // aToolStripMenuItem
-            // 
-            this.aToolStripMenuItem.Name = "aToolStripMenuItem";
-            this.aToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aToolStripMenuItem.Text = "A*";
-            this.aToolStripMenuItem.Click += new System.EventHandler(this.aToolStripMenuItem_Click);
-            // 
-            // losowyZAToolStripMenuItem
-            // 
-            this.losowyZAToolStripMenuItem.Name = "losowyZAToolStripMenuItem";
-            this.losowyZAToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.losowyZAToolStripMenuItem.Text = "Losowy z A*";
-            this.losowyZAToolStripMenuItem.Click += new System.EventHandler(this.losowyZAToolStripMenuItem_Click);
             // 
             // Form1
             // 

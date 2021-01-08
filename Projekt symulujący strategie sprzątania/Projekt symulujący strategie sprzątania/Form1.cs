@@ -33,12 +33,12 @@ namespace Projekt_symulujący_strategie_sprzątania
             InitializeComponent();
             czy_aktywna = false;
             timer1.Enabled = true;
-           // timer1.Interval = 1000;
+           
 
         }
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            mapa.Plansza = mapa.Plansza6;
+            mapa.Plansza = mapa.Plansza2;
             t.Interval = 15000;
 
 
@@ -182,11 +182,11 @@ namespace Projekt_symulujący_strategie_sprzątania
                  ts.Minutes, ts.Seconds
                 );
             label9.Text = elapsedTime;
-
+            
         }
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //mapa.WymiaryTablicy();
+            
             stopWatch.Start();
 
             czy_aktywna = true;
@@ -227,7 +227,7 @@ namespace Projekt_symulujący_strategie_sprzątania
         {
             RestartMapy();
             wybórAlgorytmuToolStripMenuItem.Enabled = true;
-
+            stopWatch.Restart();
 
         }
 
@@ -311,19 +311,8 @@ namespace Projekt_symulujący_strategie_sprzątania
         }
 
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Process currentProcess = Process.GetCurrentProcess();
-            Console.WriteLine(currentProcess.Id);
-            var frm = Form.ActiveForm;
-            Console.WriteLine(frm);
 
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            odkurzacz.Najblizszy_Bialy();
-        }
+     
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
