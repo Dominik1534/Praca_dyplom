@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.Ekran_Symylacji = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pauzaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wybórPlanszyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.wielePokoiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jadalniaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.przeszkody4PokoiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zpokojemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.przeszkody2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pustyPokójToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wybórAlgorytmuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.losowyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.smoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,7 +62,7 @@
             this.Ponowne_przejscia_liczba = new System.Windows.Forms.Label();
             this.Wyjscie = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.LicznikCzasu = new System.Windows.Forms.Label();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -71,11 +72,11 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Location = new System.Drawing.Point(12, 27);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(320, 320);
-            this.panel1.TabIndex = 0;
+            this.Ekran_Symylacji.BackColor = System.Drawing.Color.Black;
+            this.Ekran_Symylacji.Location = new System.Drawing.Point(12, 27);
+            this.Ekran_Symylacji.Name = "panel1";
+            this.Ekran_Symylacji.Size = new System.Drawing.Size(320, 320);
+            this.Ekran_Symylacji.TabIndex = 0;
             // 
             // menuStrip1
             // 
@@ -115,33 +116,41 @@
             // wybórPlanszyToolStripMenuItem
             // 
             this.wybórPlanszyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.wielePokoiToolStripMenuItem,
-            this.jadalniaToolStripMenuItem,
-            this.salonToolStripMenuItem});
+            this.przeszkody4PokoiToolStripMenuItem,
+            this.zpokojemToolStripMenuItem,
+            this.przeszkody2ToolStripMenuItem,
+            this.pustyPokójToolStripMenuItem});
             this.wybórPlanszyToolStripMenuItem.Name = "wybórPlanszyToolStripMenuItem";
-            this.wybórPlanszyToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
-            this.wybórPlanszyToolStripMenuItem.Text = "Wybór planszy";
+            this.wybórPlanszyToolStripMenuItem.Size = new System.Drawing.Size(134, 20);
+            this.wybórPlanszyToolStripMenuItem.Text = "Wybór pomieszczenia";
             // 
-            // wielePokoiToolStripMenuItem
+            // przeszkody4PokoiToolStripMenuItem
             // 
-            this.wielePokoiToolStripMenuItem.Name = "wielePokoiToolStripMenuItem";
-            this.wielePokoiToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.wielePokoiToolStripMenuItem.Text = "Wiele pokoi";
-            this.wielePokoiToolStripMenuItem.Click += new System.EventHandler(this.WielePokoiToolStripMenuItem_Click);
+            this.przeszkody4PokoiToolStripMenuItem.Name = "przeszkody4PokoiToolStripMenuItem";
+            this.przeszkody4PokoiToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.przeszkody4PokoiToolStripMenuItem.Text = "4 przeszkody";
+            this.przeszkody4PokoiToolStripMenuItem.Click += new System.EventHandler(this.WielePokoiToolStripMenuItem_Click);
             // 
-            // jadalniaToolStripMenuItem
+            // zpokojemToolStripMenuItem
             // 
-            this.jadalniaToolStripMenuItem.Name = "jadalniaToolStripMenuItem";
-            this.jadalniaToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.jadalniaToolStripMenuItem.Text = "Jadalnia";
-            this.jadalniaToolStripMenuItem.Click += new System.EventHandler(this.JadalniaToolStripMenuItem_Click);
+            this.zpokojemToolStripMenuItem.Name = "zpokojemToolStripMenuItem";
+            this.zpokojemToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.zpokojemToolStripMenuItem.Text = "Z pokojem";
+            this.zpokojemToolStripMenuItem.Click += new System.EventHandler(this.JadalniaToolStripMenuItem_Click);
             // 
-            // salonToolStripMenuItem
+            // przeszkody2ToolStripMenuItem
             // 
-            this.salonToolStripMenuItem.Name = "salonToolStripMenuItem";
-            this.salonToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.salonToolStripMenuItem.Text = "Salon";
-            this.salonToolStripMenuItem.Click += new System.EventHandler(this.SalonToolStripMenuItem_Click);
+            this.przeszkody2ToolStripMenuItem.Name = "przeszkody2ToolStripMenuItem";
+            this.przeszkody2ToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.przeszkody2ToolStripMenuItem.Text = "2 przeszkody";
+            this.przeszkody2ToolStripMenuItem.Click += new System.EventHandler(this.SalonToolStripMenuItem_Click);
+            // 
+            // pustyPokójToolStripMenuItem
+            // 
+            this.pustyPokójToolStripMenuItem.Name = "pustyPokójToolStripMenuItem";
+            this.pustyPokójToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.pustyPokójToolStripMenuItem.Text = "Pusty pokój ";
+            this.pustyPokójToolStripMenuItem.Click += new System.EventHandler(this.pustyPokójToolStripMenuItem_Click);
             // 
             // wybórAlgorytmuToolStripMenuItem
             // 
@@ -153,49 +162,49 @@
             this.aToolStripMenuItem,
             this.losowyZAToolStripMenuItem});
             this.wybórAlgorytmuToolStripMenuItem.Name = "wybórAlgorytmuToolStripMenuItem";
-            this.wybórAlgorytmuToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
-            this.wybórAlgorytmuToolStripMenuItem.Text = "Wybór algorytmu";
+            this.wybórAlgorytmuToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
+            this.wybórAlgorytmuToolStripMenuItem.Text = "Wybór strategii";
             // 
             // losowyToolStripMenuItem
             // 
             this.losowyToolStripMenuItem.Name = "losowyToolStripMenuItem";
-            this.losowyToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.losowyToolStripMenuItem.Text = "Losowy";
+            this.losowyToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.losowyToolStripMenuItem.Text = "Losowe odbicia";
             this.losowyToolStripMenuItem.Click += new System.EventHandler(this.losowyToolStripMenuItem_Click);
             // 
             // smoveToolStripMenuItem
             // 
             this.smoveToolStripMenuItem.Name = "smoveToolStripMenuItem";
-            this.smoveToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.smoveToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.smoveToolStripMenuItem.Text = "S-move";
             this.smoveToolStripMenuItem.Click += new System.EventHandler(this.smoveToolStripMenuItem_Click);
             // 
             // wzdłóżŚcianToolStripMenuItem
             // 
             this.wzdłóżŚcianToolStripMenuItem.Name = "wzdłóżŚcianToolStripMenuItem";
-            this.wzdłóżŚcianToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.wzdłóżŚcianToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.wzdłóżŚcianToolStripMenuItem.Text = "Wzdłuż ścian";
             this.wzdłóżŚcianToolStripMenuItem.Click += new System.EventHandler(this.wzdłóżŚcianToolStripMenuItem_Click);
             // 
             // zMapaToolStripMenuItem
             // 
             this.zMapaToolStripMenuItem.Name = "zMapaToolStripMenuItem";
-            this.zMapaToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.zMapaToolStripMenuItem.Text = "Z mapa";
+            this.zMapaToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.zMapaToolStripMenuItem.Text = "Z zapamiętaną trasa";
             this.zMapaToolStripMenuItem.Click += new System.EventHandler(this.zMapaToolStripMenuItem_Click);
             // 
             // aToolStripMenuItem
             // 
             this.aToolStripMenuItem.Name = "aToolStripMenuItem";
-            this.aToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.aToolStripMenuItem.Text = "A*";
+            this.aToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.aToolStripMenuItem.Text = "Z algorytmem A*";
             this.aToolStripMenuItem.Click += new System.EventHandler(this.aToolStripMenuItem_Click);
             // 
             // losowyZAToolStripMenuItem
             // 
             this.losowyZAToolStripMenuItem.Name = "losowyZAToolStripMenuItem";
-            this.losowyZAToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.losowyZAToolStripMenuItem.Text = "Losowy z A*";
+            this.losowyZAToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.losowyZAToolStripMenuItem.Text = "Losowy z algorytmem A*";
             this.losowyZAToolStripMenuItem.Click += new System.EventHandler(this.losowyZAToolStripMenuItem_Click);
             // 
             // timer1
@@ -328,14 +337,14 @@
             this.label8.TabIndex = 16;
             this.label8.Text = "Czas";
             // 
-            // label9
+            // LicznikCzasu
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(461, 49);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(10, 13);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "-";
+            this.LicznikCzasu.AutoSize = true;
+            this.LicznikCzasu.Location = new System.Drawing.Point(461, 49);
+            this.LicznikCzasu.Name = "LicznikCzasu";
+            this.LicznikCzasu.Size = new System.Drawing.Size(10, 13);
+            this.LicznikCzasu.TabIndex = 17;
+            this.LicznikCzasu.Text = "-";
             // 
             // trackBar1
             // 
@@ -352,9 +361,9 @@
             // 
             this.label10.Location = new System.Drawing.Point(339, 195);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(95, 13);
+            this.label10.Size = new System.Drawing.Size(125, 13);
             this.label10.TabIndex = 20;
-            this.label10.Text = "Timer Interval";
+            this.label10.Text = "Prędkość odkurzacza";
             // 
             // label11
             // 
@@ -373,7 +382,7 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.trackBar1);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.LicznikCzasu);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.Wyjscie);
             this.Controls.Add(this.Ponowne_przejscia_liczba);
@@ -388,7 +397,7 @@
             this.Controls.Add(this.Wielkosc);
             this.Controls.Add(this.BrudnePola);
             this.Controls.Add(this.CzystePola);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.Ekran_Symylacji);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MainMenuStrip = this.menuStrip1;
@@ -406,7 +415,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel Ekran_Symylacji;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pauzaToolStripMenuItem;
@@ -414,9 +423,9 @@
         private System.Windows.Forms.Timer timer1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ToolStripMenuItem wybórPlanszyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem wielePokoiToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem jadalniaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salonToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem przeszkody4PokoiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zpokojemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem przeszkody2ToolStripMenuItem;
         private System.Windows.Forms.Label CzystePola;
         private System.Windows.Forms.Label BrudnePola;
         private System.Windows.Forms.Label Wielkosc;
@@ -436,12 +445,13 @@
         private System.Windows.Forms.Button Wyjscie;
         private System.Windows.Forms.ToolStripMenuItem zMapaToolStripMenuItem;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label LicznikCzasu;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ToolStripMenuItem aToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem losowyZAToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pustyPokójToolStripMenuItem;
     }
 }
 

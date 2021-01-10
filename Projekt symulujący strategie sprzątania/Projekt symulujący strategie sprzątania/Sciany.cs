@@ -9,7 +9,7 @@ namespace Projekt_symulujący_strategie_sprzątania
         public bool a = false;
 
         Mapa mapa = new Mapa();
-        public void rysuj(Graphics g, Brush b, int segment)
+        public void Rysuj(Graphics g, Brush b, int segment)
         {
 
             for (int py = 0; py < mapa.Tab; py++)

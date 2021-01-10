@@ -40,32 +40,42 @@ namespace Projekt_symulujący_strategie_sprzątania
         {
             mapa.Plansza = mapa.Plansza2;
             t.Interval = 15000;
-
-
+            pauzaToolStripMenuItem.Enabled = false;
+            restartToolStripMenuItem.Enabled = false;
             t.Tick += new EventHandler(StartThread);
             t.Start();
 
         }
         private void Odswierz()
         {
-            panel1.CreateGraphics().Clear(Color.White);
+            Ekran_Symylacji.CreateGraphics().Clear(Color.White);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+         
             if (czy_aktywna)
             {
+                restartToolStripMenuItem.Enabled = false;
+                wybórAlgorytmuToolStripMenuItem.Enabled = false;
+                wybórPlanszyToolStripMenuItem.Enabled = false;
                 if (Ogranicznik_odswierzania == true)
                 {
                     Odswierz();
                     Ogranicznik_odswierzania = false;
                 }
+                sciany.Rysuj(Ekran_Symylacji.CreateGraphics(), new SolidBrush(Color.Gray), odkurzacz.segment);
 
-                sciany.rysuj(panel1.CreateGraphics(), new SolidBrush(Color.Gray), odkurzacz.segment);
+                trasa.Rysuj(Ekran_Symylacji.CreateGraphics(), new SolidBrush(Color.White), odkurzacz.segment);
 
-                trasa.rysuj(panel1.CreateGraphics(), new SolidBrush(Color.White), odkurzacz.segment);
+                odkurzacz.Rysuj(Ekran_Symylacji.CreateGraphics(), new SolidBrush(Color.Black));
 
-                odkurzacz.rysuj(panel1.CreateGraphics(), new SolidBrush(Color.Black));
+                if (odkurzacz.KoniecSprzatania == true)
+                {
+                    czy_aktywna = false;
+                }
+
+
                 switch (NrAlgorytmu)
                 {
                     case 1:
@@ -91,17 +101,13 @@ namespace Projekt_symulujący_strategie_sprzątania
                         break;
 
                 }
-
                 odkurzacz.Trasa_Cieplna();
                 Statystyki();
                 Stoper();
-
             }
             else
             {
-
                 WyswietlKomunukat();
-
             }
         }
 
@@ -109,7 +115,6 @@ namespace Projekt_symulujący_strategie_sprzątania
         {
             if (czy_aktywna == true)
             {
-
                 Nr++;
                 var CurrentDirectory = Directory.GetCurrentDirectory();
                 Console.WriteLine(CurrentDirectory);
@@ -119,14 +124,12 @@ namespace Projekt_symulujący_strategie_sprzątania
                 bmpScreenshot.Save(AppDomain.CurrentDomain.BaseDirectory + $"{label7.Text}_{Nr}.Png", ImageFormat.Png);
                 th.Abort();
             }
-
         }
 
         public void StartThread(object sender, EventArgs e)
         {
             if (czy_aktywna == true)
             {
-
                 PauzaProgramu();
                 th = new Thread(new ThreadStart(TakeScreenShot));
                 PauzaProgramu();
@@ -148,7 +151,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                     label7.Text = "Wzdłóż ścian";
                     break;
                 case 4:
-                    label7.Text = "Z mapą";
+                    label7.Text = "Z pamięcia trasy";
                     break;
                 case 5:
                     label7.Text = "A Star";
@@ -163,6 +166,16 @@ namespace Projekt_symulujący_strategie_sprzątania
             label5.Text = odkurzacz.Ruchy.ToString();
 
             Ponowne_przejscia_liczba.Text = odkurzacz.Ponowne_przejscia.ToString();
+
+            mapa.LiczbaCzystychPol = 0;
+            mapa.LiczbaBrudnychPol = 0;
+            mapa.LiczbaScian = 0;
+
+            mapa.WyczyszczonePola();
+            CzystePola.Text = mapa.LiczbaCzystychPol.ToString();
+            BrudnePola.Text = mapa.LiczbaBrudnychPol.ToString();
+            Wielkosc.Text = Math.Round(mapa.ProcentCzystosci, 2) + "%";
+
         }
 
         private void WyswietlKomunukat()
@@ -170,30 +183,26 @@ namespace Projekt_symulujący_strategie_sprzątania
             FontFamily fontFamily1 = new FontFamily("Arial");
             Font f = new Font(fontFamily1, 15);
             Brush b = new SolidBrush(Color.Red);
-            panel1.CreateGraphics().DrawString("Symulacja zatrzymana", f, b, 40, 125);
-
+            Ekran_Symylacji.CreateGraphics().DrawString("Symulacja zatrzymana", f, b, 50, 150);
         }
         private void Stoper()
         {
             stopWatch.Start();
             TimeSpan ts = stopWatch.Elapsed;
-
             string elapsedTime = String.Format("{0:00}:{1:00}",
                  ts.Minutes, ts.Seconds
                 );
-            label9.Text = elapsedTime;
-            
+            LicznikCzasu.Text = elapsedTime;         
         }
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
+        {  
             stopWatch.Start();
-
+            pauzaToolStripMenuItem.Enabled = true;
+            restartToolStripMenuItem.Enabled = true;
             czy_aktywna = true;
-            odkurzacz = new Odkurzacz(panel1.Width, panel1.Height);
+            odkurzacz = new Odkurzacz(Ekran_Symylacji.Width);
             Odswierz();
             startToolStripMenuItem.Enabled = false;
-
         }
         private void pauzaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -202,124 +211,95 @@ namespace Projekt_symulujący_strategie_sprzątania
 
         private void PauzaProgramu()
         {
+            restartToolStripMenuItem.Enabled = true;
+            wybórAlgorytmuToolStripMenuItem.Enabled = true;
+            wybórPlanszyToolStripMenuItem.Enabled = true;
             stopWatch.Stop();
+
             if (czy_aktywna == false)
             {
-
-                czy_aktywna = true;
-                mapa.LiczbaCzystychPol = 0;
-                mapa.LiczbaBrudnychPol = 0;
-                mapa.LiczbaScian = 0;
+                czy_aktywna = true;          
             }
             else
             {
-                mapa.WyczyszczonePola();
-                CzystePola.Text = mapa.LiczbaCzystychPol.ToString();
-                BrudnePola.Text = mapa.LiczbaBrudnychPol.ToString();
-                Wielkosc.Text = Math.Round(mapa.ProcentCzystosci, 2) + "%";
                 czy_aktywna = false;
-
             }
             Ogranicznik_odswierzania = true;
         }
 
         private void restartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RestartMapy();
-            wybórAlgorytmuToolStripMenuItem.Enabled = true;
+            RestartMapy();   
             stopWatch.Restart();
-
         }
-
         private void RestartMapy()
         {
             Form1.mapa.Plansza[odkurzacz.Poz_startY, odkurzacz.Poz_startX] = 1;
             mapa.ResetPlanszy();
             czy_aktywna = true;
+            pauzaToolStripMenuItem.Enabled = true;
 
-            odkurzacz = new Odkurzacz(panel1.Width, panel1.Height);
+            odkurzacz = new Odkurzacz(Ekran_Symylacji.Width);
             Odswierz();
         }
-
-
-
-
-
         private void WielePokoiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mapa.WyborPlanszy(1);
-
+            pauzaToolStripMenuItem.Enabled = false;
         }
-
         private void JadalniaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mapa.WyborPlanszy(2);
-
+            pauzaToolStripMenuItem.Enabled = false;
         }
-
         private void SalonToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mapa.WyborPlanszy(3);
-
-
+            pauzaToolStripMenuItem.Enabled = false;
         }
-
+        private void pustyPokójToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mapa.WyborPlanszy(4);
+            pauzaToolStripMenuItem.Enabled = false;
+        }
         private void losowyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NrAlgorytmu = 1;
-            wybórAlgorytmuToolStripMenuItem.Enabled = false;
-
+            pauzaToolStripMenuItem.Enabled = false;
         }
-
         private void smoveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NrAlgorytmu = 2;
-            wybórAlgorytmuToolStripMenuItem.Enabled = false;
-
+            pauzaToolStripMenuItem.Enabled = false;
         }
-
         private void wzdłóżŚcianToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NrAlgorytmu = 3;
-            wybórAlgorytmuToolStripMenuItem.Enabled = false;
-
+            pauzaToolStripMenuItem.Enabled = false;
         }
-
-
         private void zMapaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NrAlgorytmu = 4;
-            wybórAlgorytmuToolStripMenuItem.Enabled = false;
-
-
-
+            pauzaToolStripMenuItem.Enabled = false;
         }
         private void aToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NrAlgorytmu = 5;
-            wybórAlgorytmuToolStripMenuItem.Enabled = false;
-
-        } 
+            pauzaToolStripMenuItem.Enabled = false;
+        }
         private void losowyZAToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NrAlgorytmu = 6;
-            wybórAlgorytmuToolStripMenuItem.Enabled = false;
+            pauzaToolStripMenuItem.Enabled = false;
         }
         private void Wyjscie_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
-
-
-     
-
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             timer1.Interval = trackBar1.Value;
             label11.Text = timer1.Interval.ToString();
         }
-
-     
     }
 }

@@ -10,7 +10,7 @@ namespace Projekt_symulujący_strategie_sprzątania
         public int y;
         Mapa mapa = new Mapa();
         List<Color> Kolory = new List<Color>() { Color.DarkBlue, Color.Blue, Color.Cyan, Color.YellowGreen, Color.Yellow, Color.Orange, Color.OrangeRed, Color.Red, Color.DarkRed };
-        public void rysuj(Graphics g, Brush b, int segment)
+        public void Rysuj(Graphics g, Brush b, int segment)
         {
             for (int py = 0; py < mapa.Tab; py++)
             {
