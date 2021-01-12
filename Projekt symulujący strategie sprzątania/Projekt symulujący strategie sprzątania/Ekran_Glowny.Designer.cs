@@ -1,6 +1,6 @@
 ﻿namespace Projekt_symulujący_strategie_sprzątania
 {
-    partial class Form1
+    partial class Ekran_Glowny
     {
         /// <summary>
         /// Wymagana zmienna projektanta.
@@ -45,8 +45,7 @@
             this.wzdłóżŚcianToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zMapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.losowyZAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.GlownyTimer = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.CzystePola = new System.Windows.Forms.Label();
             this.BrudnePola = new System.Windows.Forms.Label();
@@ -70,11 +69,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // Ekran_Symylacji
             // 
             this.Ekran_Symylacji.BackColor = System.Drawing.Color.Black;
             this.Ekran_Symylacji.Location = new System.Drawing.Point(12, 27);
-            this.Ekran_Symylacji.Name = "panel1";
+            this.Ekran_Symylacji.Name = "Ekran_Symylacji";
             this.Ekran_Symylacji.Size = new System.Drawing.Size(320, 320);
             this.Ekran_Symylacji.TabIndex = 0;
             // 
@@ -159,8 +158,7 @@
             this.smoveToolStripMenuItem,
             this.wzdłóżŚcianToolStripMenuItem,
             this.zMapaToolStripMenuItem,
-            this.aToolStripMenuItem,
-            this.losowyZAToolStripMenuItem});
+            this.aToolStripMenuItem});
             this.wybórAlgorytmuToolStripMenuItem.Name = "wybórAlgorytmuToolStripMenuItem";
             this.wybórAlgorytmuToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
             this.wybórAlgorytmuToolStripMenuItem.Text = "Wybór strategii";
@@ -168,48 +166,41 @@
             // losowyToolStripMenuItem
             // 
             this.losowyToolStripMenuItem.Name = "losowyToolStripMenuItem";
-            this.losowyToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.losowyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.losowyToolStripMenuItem.Text = "Losowe odbicia";
             this.losowyToolStripMenuItem.Click += new System.EventHandler(this.losowyToolStripMenuItem_Click);
             // 
             // smoveToolStripMenuItem
             // 
             this.smoveToolStripMenuItem.Name = "smoveToolStripMenuItem";
-            this.smoveToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.smoveToolStripMenuItem.Text = "S-move";
+            this.smoveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.smoveToolStripMenuItem.Text = "Ruch-S";
             this.smoveToolStripMenuItem.Click += new System.EventHandler(this.smoveToolStripMenuItem_Click);
             // 
             // wzdłóżŚcianToolStripMenuItem
             // 
             this.wzdłóżŚcianToolStripMenuItem.Name = "wzdłóżŚcianToolStripMenuItem";
-            this.wzdłóżŚcianToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.wzdłóżŚcianToolStripMenuItem.Text = "Wzdłuż ścian";
+            this.wzdłóżŚcianToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.wzdłóżŚcianToolStripMenuItem.Text = "Podążanie za ścianą";
             this.wzdłóżŚcianToolStripMenuItem.Click += new System.EventHandler(this.wzdłóżŚcianToolStripMenuItem_Click);
             // 
             // zMapaToolStripMenuItem
             // 
             this.zMapaToolStripMenuItem.Name = "zMapaToolStripMenuItem";
-            this.zMapaToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.zMapaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.zMapaToolStripMenuItem.Text = "Z zapamiętaną trasa";
             this.zMapaToolStripMenuItem.Click += new System.EventHandler(this.zMapaToolStripMenuItem_Click);
             // 
             // aToolStripMenuItem
             // 
             this.aToolStripMenuItem.Name = "aToolStripMenuItem";
-            this.aToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.aToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aToolStripMenuItem.Text = "Z algorytmem A*";
             this.aToolStripMenuItem.Click += new System.EventHandler(this.aToolStripMenuItem_Click);
             // 
-            // losowyZAToolStripMenuItem
-            // 
-            this.losowyZAToolStripMenuItem.Name = "losowyZAToolStripMenuItem";
-            this.losowyZAToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.losowyZAToolStripMenuItem.Text = "Losowy z algorytmem A*";
-            this.losowyZAToolStripMenuItem.Click += new System.EventHandler(this.losowyZAToolStripMenuItem_Click);
-            // 
             // timer1
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.GlownyTimer.Tick += new System.EventHandler(this.GlownyTimer_Tick);
             // 
             // CzystePola
             // 
@@ -404,7 +395,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load_1);
+            this.Load += new System.EventHandler(this.Ekran_Glowny_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
@@ -420,7 +411,7 @@
         private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pauzaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restartToolStripMenuItem;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer GlownyTimer;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ToolStripMenuItem wybórPlanszyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem przeszkody4PokoiToolStripMenuItem;
@@ -450,7 +441,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ToolStripMenuItem aToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem losowyZAToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pustyPokójToolStripMenuItem;
     }
 }

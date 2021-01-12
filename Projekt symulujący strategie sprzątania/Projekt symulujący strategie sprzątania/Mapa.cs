@@ -222,7 +222,7 @@ namespace Projekt_symulujący_strategie_sprzątania
                 {
                     if (Plansza[py, px] >= 10 && Plansza[py, px] < 99)
                     {
-                        Form1.mapa.Plansza[py, px] = 0;
+                        Ekran_Glowny.mapa.Plansza[py, px] = 0;
 
                     }
                 }

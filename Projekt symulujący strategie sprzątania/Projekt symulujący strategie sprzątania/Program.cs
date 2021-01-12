@@ -13,7 +13,7 @@ namespace Projekt_symulujący_strategie_sprzątania
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Ekran_Glowny());
         }
     }
 }
